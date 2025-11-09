@@ -1,47 +1,32 @@
 ---
-// Style Imports
-import '../styles/global.css';
-
-import { PreactCounter } from '../components/preact/PreactCounter';
-// Component Imports
-// For JSX components, all the common ways of exporting (under a namespace, specific export, default export etc) are supported!
-import * as react from '../components/react/ReactCounter';
-import SolidCounter from '../components/solid/SolidCounter';
-import SvelteCounter from '../components/svelte/SvelteCounter.svelte';
-import VueCounter from '../components/vue/VueCounter.vue';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import Header from '../components/Header.astro';
+import Services from '../components/Services.astro';
+import Footer from '../components/Footer.astro';
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Astro Party</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
+		<Header />
 		<main>
-			<react.Counter client:visible>
-				<h1>Hello from React!</h1>
-			</react.Counter>
-
-			<PreactCounter client:visible>
-				<h1>Hello from Preact!</h1>
-			</PreactCounter>
-
-			<SolidCounter client:visible>
-				<h1>Hello from Solid!</h1>
-			</SolidCounter>
-
-			<VueCounter client:visible>
-				<h1>Hello from Vue!</h1>
-			</VueCounter>
-
-			<SvelteCounter client:visible>
-				<h1>Hello from Svelte!</h1>
-			</SvelteCounter>
+			<section class="hero">
+				<div class="hero-content">
+					<h1 class="title">Let's Get This Party Started!</h1>
+					<p class="subtitle">Unforgettable events, planned to perfection.</p>
+					<a href="#services" class="cta-button">Our Services</a>
+				</div>
+			</section>
+      <Services />
 		</main>
+		<Footer />
 	</body>
 </html>

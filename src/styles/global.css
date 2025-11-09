@@ -1,21 +1,64 @@
-html,
-body {
-	font-family: system-ui;
-	margin: 0;
-}
+/* public/styles/global.css */
 
 body {
-	padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ff69b4, #ffb6c1, #87ceeb);
+  color: #333;
+  animation: gradientAnimation 10s ease infinite;
 }
 
-.counter {
-	display: grid;
-	font-size: 2em;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	margin-top: 2em;
-	place-items: center;
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.counter-message {
-	text-align: center;
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-content {
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: #fff;
+  color: #ff69b4;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #ff69b4;
+  color: #fff;
+  transform: scale(1.1);
 }
