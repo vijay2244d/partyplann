@@ -2,21 +2,21 @@
   <div class="container">
     <h2 class="section-title">Our Services</h2>
     <div class="services-grid">
-      <div class="service-card">
+      <div class="service-card birthday-party">
         <div class="service-icon">
           <img src="/icons/birthday-cake.svg" alt="Birthday Parties" />
         </div>
         <h3>Birthday Parties</h3>
         <p>Customized birthday celebrations for all ages.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card wedding">
         <div class="service-icon">
           <img src="/icons/wedding-rings.svg" alt="Weddings" />
         </div>
         <h3>Weddings</h3>
         <p>Elegant and memorable wedding planning.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card corporate-event">
         <div class="service-icon">
           <img src="/icons/corporate-event.svg" alt="Corporate Events" />
         </div>
@@ -68,5 +68,54 @@
   .service-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+  }
+
+  /* Animations */
+  .birthday-party:hover {
+    animation: birthday-animation 0.5s ease-in-out forwards;
+  }
+
+  .wedding:hover {
+    animation: wedding-animation 0.5s ease-in-out forwards;
+  }
+
+  .corporate-event:hover {
+    animation: corporate-event-animation 0.5s ease-in-out forwards;
+  }
+
+  @keyframes birthday-animation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes wedding-animation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1) rotate(-5deg);
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  @keyframes corporate-event-animation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 </style>

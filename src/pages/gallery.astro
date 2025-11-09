@@ -1,0 +1,51 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout>
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://picsum.photos/seed/picsum/400/300" alt="Gallery Image" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/seed/picsum/400/300" alt="Gallery Image" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/seed/picsum/400/300" alt="Gallery Image" />
+        </div>
+        <div class="gallery-item">
+          <img src="https://picsum.photos/seed/picsum/400/300" alt="Gallery Image" />
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .gallery-section {
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #333;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+</style>

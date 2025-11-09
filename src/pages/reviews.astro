@@ -1,0 +1,259 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const reviews = [
+  {
+    name: "Sarah L.",
+    review: "AstroParty made my daughter's 10th birthday unforgettable! The attention to detail was amazing, and the kids had a blast. Highly recommend!",
+  },
+  {
+    name: "John D.",
+    review: "We hired AstroParty for our corporate event, and they exceeded all our expectations. The team was professional, and the event was a huge success.",
+  },
+  {
+    name: "Emily R.",
+    review: "Our wedding was a dream come true, thanks to AstroParty. They took care of everything, and we were able to relax and enjoy our special day.",
+  },
+  {
+    name: "Michael B.",
+    review: "The best party planners in the business! We've used them for multiple events, and they always deliver.",
+  },
+  {
+    name: "Jessica H.",
+    review: "I was so impressed with the creativity and professionalism of the AstroParty team. They transformed our venue into a magical wonderland.",
+  },
+  {
+    name: "David S.",
+    review: "AstroParty is the go-to for any event. They are organized, reliable, and always go the extra mile.",
+  },
+  {
+    name: "Jennifer M.",
+    review: "I can't say enough good things about AstroParty. They are simply the best!",
+  },
+  {
+    name: "Chris P.",
+    review: "If you want a stress-free party planning experience, look no further than AstroParty.",
+  },
+  {
+    name: "Amanda G.",
+    review: "AstroParty is worth every penny. They are true professionals who are passionate about what they do.",
+  },
+  {
+    name: "Kevin T.",
+    review: "I was blown away by the level of detail and care that went into our event. AstroParty is the real deal.",
+  },
+  {
+    name: "Rachel K.",
+    review: "AstroParty made our dreams a reality. We couldn't have asked for a better team to work with.",
+  },
+  {
+    name: "Brian W.",
+    review: "I highly recommend AstroParty to anyone looking for a top-notch event planner.",
+  },
+  {
+    name: "Laura C.",
+    review: "AstroParty is the best in the business. They are creative, organized, and a pleasure to work with.",
+  },
+  {
+    name: "Steven A.",
+    review: "I was so impressed with the professionalism and attention to detail of the AstroParty team. They made our event a huge success.",
+  },
+  {
+    name: "Megan N.",
+    review: "AstroParty is the only event planner I will ever use. They are simply the best.",
+  },
+  {
+    name: "Daniel F.",
+    review: "If you want a flawless event, hire AstroParty. You won't be disappointed.",
+  },
+  {
+    name: "Kimberly J.",
+    review: "AstroParty exceeded all our expectations. They are true professionals who are passionate about what they do.",
+  },
+  {
+    name: "Jason Z.",
+    review: "I was so impressed with the creativity and attention to detail of the AstroParty team. They made our event a huge success.",
+  },
+  {
+    name: "Michelle V.",
+    review: "AstroParty is the best in the business. They are creative, organized, and a pleasure to work with.",
+  },
+  {
+    name: "Ryan G.",
+    review: "I highly recommend AstroParty to anyone looking for a top-notch event planner.",
+  },
+  {
+    name: "Lauren O.",
+    review: "AstroParty is the only event planner I will ever use. They are simply the best.",
+  },
+  {
+    name: "Matthew I.",
+    review: "If you want a flawless event, hire AstroParty. You won't be disappointed.",
+  },
+  {
+    name: "Stephanie E.",
+    review: "AstroParty exceeded all our expectations. They are true professionals who are passionate about what they do.",
+  },
+  {
+    name: "Justin P.",
+    review: "I was so impressed with the creativity and attention to detail of the AstroParty team. They made our event a huge success.",
+  },
+  {
+    name: "Melissa R.",
+    review: "AstroParty is the best in the business. They are creative, organized, and a pleasure to work with.",
+  },
+  {
+    name: "Andrew T.",
+    review: "I highly recommend AstroParty to anyone looking for a top-notch event planner.",
+  },
+  {
+    name: "Nicole S.",
+    review: "AstroParty is the only event planner I will ever use. They are simply the best.",
+  },
+  {
+    name: "Brandon L.",
+    review: "If you want a flawless event, hire AstroParty. You won't be disappointed.",
+  },
+  {
+    name: "Heather M.",
+    review: "AstroParty exceeded all our expectations. They are true professionals who are passionate about what they do.",
+  },
+  {
+    name: "Jonathan B.",
+    review: "I was so impressed with the creativity and attention to detail of the AstroParty team. They made our event a huge success.",
+  },
+  {
+    name: "Elizabeth K.",
+    review: "AstroParty is the best in the business. They are creative, organized, and a pleasure to work with.",
+  },
+  {
+    name: "Robert A.",
+    review: "I highly recommend AstroParty to anyone looking for a top-notch event planner.",
+  },
+  {
+    name: "Christina C.",
+    review: "AstroParty is the only event planner I will ever use. They are simply the best.",
+  },
+  {
+    name: "Joshua D.",
+    review: "If you want a flawless event, hire AstroParty. You won't be disappointed.",
+  },
+  {
+    name: "Mary H.",
+    review: "AstroParty exceeded all our expectations. They are true professionals who are passionate about what they do.",
+  },
+  {
+    name: "Patrick G.",
+    review: "I was so impressed with the creativity and attention to detail of the AstroParty team. They made our event a huge success.",
+  },
+  {
+    name: "Tiffany W.",
+    review: "AstroParty is the best in the business. They are creative, organized, and a pleasure to work with.",
+  },
+  {
+    name: "Charles N.",
+    review: "I highly recommend AstroParty to anyone looking for a top-notch event planner.",
+  },
+  {
+    name: "Samantha J.",
+    review: "AstroParty is the only event planner I will ever use. They are simply the best.",
+  },
+  {
+    name: "Timothy Z.",
+    review: "If you want a flawless event, hire AstroParty. You won't be disappointed.",
+  },
+  {
+    name: "Vanessa V.",
+    review: "AstroParty exceeded all our expectations. They are true professionals who are passionate about what they do.",
+  },
+  {
+    name: "Eric P.",
+    review: "I was so impressed with the creativity and attention to detail of the AstroParty team. They made our event a huge success.",
+  },
+  {
+    name: "Amber R.",
+    review: "AstroParty is the best in the business. They are creative, organized, and a pleasure to work with.",
+  },
+  {
+    name: "Gregory T.",
+    review: "I highly recommend AstroParty to anyone looking for a top-notch event planner.",
+  },
+  {
+    name: "Danielle S.",
+    review: "AstroParty is the only event planner I will ever use. They are simply the best.",
+  },
+  {
+    name: "Benjamin L.",
+    review: "If you want a flawless event, hire AstroParty. You won't be disappointed.",
+  },
+  {
+    name: "Victoria M.",
+    review: "AstroParty exceeded all our expectations. They are true professionals who are passionate about what they do.",
+  },
+  {
+    name: "Jeffrey B.",
+    review: "I was so impressed with the creativity and attention to detail of the AstroParty team. They made our event a huge success.",
+  },
+  {
+    name: "Crystal K.",
+    review: "AstroParty is the best in the business. They are creative, organized, and a pleasure to work with.",
+  },
+  {
+    name: "Richard A.",
+    review: "I highly recommend AstroParty to anyone looking for a top-notch event planner.",
+  },
+];
+---
+
+<MainLayout>
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <h2 class="section-title">What Our Clients Say</h2>
+      <div class="reviews-grid">
+        {reviews.map((review) => (
+          <div class="review-card">
+            <p class="review-text">"{review.review}"</p>
+            <p class="review-name">- {review.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .reviews-section {
+    padding: 5rem 2rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    color: #333;
+    text-align: center;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .review-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .review-name {
+    font-weight: 700;
+    text-align: right;
+  }
+</style>
