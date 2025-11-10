@@ -34,6 +34,7 @@ This project is a static-first web application built with Astro.js. It is design
 *   **Layout creation**: A new layout was created to ensure a consistent design across all pages.
 *   **Header update**: The header was updated to reflect the new page structure.
 *   **Styling fix**: The `global.css` file was imported into the main layout to fix styling issues.
+*   **React integration fix**: Fixed an issue where the React integration was not being applied correctly by removing the `include` option from the `react()` integration in `astro.config.mjs`.
 
 ## Current Plan
 

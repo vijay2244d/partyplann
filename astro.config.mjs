@@ -15,7 +15,7 @@ export default defineConfig({
   integrations: [
       preact({ include: ['**/preact/*'] }),
       solid({ include: ['**/solid/*'] }),
-      react({ include: ['**/react/*'] }),
+      react(),
       svelte(),
       vue(),
 	],

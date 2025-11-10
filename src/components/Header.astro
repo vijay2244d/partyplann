@@ -1,16 +1,18 @@
 <header>
-  <nav>
+  <div class="container">
     <div class="logo">
       <a href="/">AstroParty</a>
     </div>
-    <ul>
-      <li><a href="/services">Services</a></li>
-      <li><a href="/gallery">Gallery</a></li>
-      <li><a href="/reviews">Reviews</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-  </nav>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="/services">Services</a></li>
+        <li><a href="/gallery">Gallery</a></li>
+        <li><a href="/reviews">Reviews</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <style>
@@ -19,42 +21,62 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(15, 15, 15, 0.3);
     backdrop-filter: blur(10px);
     z-index: 100;
-    transition: all 0.3s ease;
+    border-bottom: 2px solid rgba(0, 255, 157, 0.1);
   }
 
-  nav {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .logo a {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: #fff;
+    color: #00ff9d;
     text-decoration: none;
+    text-shadow:
+      0 0 5px #00ff9d,
+      0 0 10px #00ff9d;
+    transition: all 0.3s ease;
   }
 
-  ul {
+  .logo a:hover {
+    text-shadow:
+      0 0 10px #00ff9d,
+      0 0 20px #00ff9d;
+  }
+
+  .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  li a {
-    color: #fff;
+  .nav-links a {
+    color: #00e5ff;
     text-decoration: none;
     font-weight: 700;
-    transition: color 0.3s ease;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-shadow:
+      0 0 3px #00e5ff,
+      0 0 5px #00e5ff;
   }
 
-  li a:hover {
-    color: #ff69b4;
+  .nav-links a:hover {
+    color: #fff;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 15px #fff;
   }
 </style>
