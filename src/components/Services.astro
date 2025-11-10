@@ -1,28 +1,37 @@
+---
+import ServiceCard from './ServiceCard.svelte';
+
+const services = [
+  {
+    icon: '🎉',
+    title: 'Birthday Parties',
+    description: 'Magical and memorable birthday parties for all ages. We handle everything from decorations and entertainment to catering and cleanup.'
+  },
+  {
+    icon: '💍',
+    title: 'Weddings',
+    description: 'Full-service wedding planning to make your special day perfect. We handle venue selection, vendor coordination, design, and day-of management.'
+  },
+  {
+    icon: '👔',
+    title: 'Corporate Events',
+    description: 'Flawless corporate events, from product launches and conferences to holiday parties and team-building retreats. We ensure a professional and engaging experience.'
+  },
+  {
+    icon: '🎈',
+    title: 'Other Events',
+    description: 'We can plan any type of event you can dream of. Just let us know what you have in mind, and we will make it happen.'
+  }
+];
+---
+
 <section id="services" class="services-section">
   <div class="container">
     <h2 class="section-title">Our Services</h2>
     <div class="services-grid">
-      <div class="service-card birthday-party">
-        <div class="service-icon">
-          <img src="/icons/birthday-cake.svg" alt="Birthday Parties" />
-        </div>
-        <h3>Birthday Parties</h3>
-        <p>Customized birthday celebrations for all ages.</p>
-      </div>
-      <div class="service-card wedding">
-        <div class="service-icon">
-          <img src="/icons/wedding-rings.svg" alt="Weddings" />
-        </div>
-        <h3>Weddings</h3>
-        <p>Elegant and memorable wedding planning.</p>
-      </div>
-      <div class="service-card corporate-event">
-        <div class="service-icon">
-          <img src="/icons/corporate-event.svg" alt="Corporate Events" />
-        </div>
-        <h3>Corporate Events</h3>
-        <p>Professional and engaging corporate gatherings.</p>
-      </div>
+      {services.map(service => (
+        <ServiceCard client:load service={service} />
+      ))}
     </div>
   </div>
 </section>
@@ -30,92 +39,20 @@
 <style>
   .services-section {
     padding: 5rem 2rem;
-    text-align: center;
   }
 
   .section-title {
     font-size: 3rem;
     margin-bottom: 3rem;
     color: #333;
+    text-align: center;
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .service-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-  }
-
-  .service-icon img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1.5rem;
-  }
-
-  .service-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  /* Animations */
-  .birthday-party:hover {
-    animation: birthday-animation 0.5s ease-in-out forwards;
-  }
-
-  .wedding:hover {
-    animation: wedding-animation 0.5s ease-in-out forwards;
-  }
-
-  .corporate-event:hover {
-    animation: corporate-event-animation 0.5s ease-in-out forwards;
-  }
-
-  @keyframes birthday-animation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1) rotate(5deg);
-    }
-    100% {
-      transform: scale(1) rotate(0deg);
-    }
-  }
-
-  @keyframes wedding-animation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1) rotate(-5deg);
-    }
-    100% {
-      transform: scale(1) rotate(0deg);
-    }
-  }
-
-  @keyframes corporate-event-animation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
+    max-width: 1200px;
+    margin: 0 auto;
   }
 </style>

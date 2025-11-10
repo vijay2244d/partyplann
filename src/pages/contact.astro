@@ -6,29 +6,70 @@ import MainLayout from '../layouts/MainLayout.astro';
   <section id="contact" class="contact-section">
     <div class="container">
       <h2 class="section-title">Contact Us</h2>
-      <div class="contact-content">
-        <div class="contact-form">
-          <form>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your Name" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Your Email" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="cta-button">Send Message</button>
-          </form>
+      <div class="contact-wrapper">
+        <div class="tabs">
+          <button class="tab-link active" data-tab="contact-form">Contact Us</button>
+          <button class="tab-link" data-tab="schedule-form">Schedule a Call</button>
         </div>
-        <div class="contact-info">
-          <h3>Contact Information</h3>
-          <p><strong>Email:</strong> contact@astroparty.com</p>
-          <p><strong>Phone:</strong> (123) 456-7890</p>
-          <p><strong>Address:</strong> 123 Party Lane, Celebration City, USA</p>
+
+        <div id="contact-form" class="tab-content active">
+          <div class="contact-form-wrapper">
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+              </div>
+              <button type="submit" class="cta-button">Send Message</button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p><strong>Email:</strong> contact@astroparty.com</p>
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Address:</strong> 123 Party Lane, Celebration City, USA</p>
+          </div>
+        </div>
+
+        <div id="schedule-form" class="tab-content">
+          <div class="schedule-form-wrapper">
+            <form>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Your Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+              </div>
+              <div class="form-group">
+                <label for="date">Select a Date</label>
+                <input type="date" id="date" name="date" required>
+              </div>
+              <div class="form-group">
+                <label for="time">Select a Time</label>
+                <input type="time" id="time" name="time" required>
+              </div>
+              <button type="submit" class="cta-button">Schedule Call</button>
+            </form>
+          </div>
+          <div class="calendar-wrapper">
+            <div class="calendar-placeholder">
+              <h3>Calendar Coming Soon</h3>
+              <p>This is where the interactive calendar will be.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,11 +88,51 @@ import MainLayout from '../layouts/MainLayout.astro';
     text-align: center;
   }
 
-  .contact-content {
+  .contact-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .tab-link {
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #999;
+    border-bottom: 2px solid transparent;
+  }
+
+  .tab-link.active {
+    color: #333;
+    border-bottom-color: #ff69b4;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .contact-form-wrapper,
+  .schedule-form-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
-    align-items: center;
   }
 
   .form-group {
@@ -92,10 +173,8 @@ import MainLayout from '../layouts/MainLayout.astro';
   }
 
   .contact-info {
-    background: #fff;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
 
   .contact-info h3 {
@@ -108,4 +187,68 @@ import MainLayout from '../layouts/MainLayout.astro';
     font-size: 1.1rem;
     margin-bottom: 1rem;
   }
+
+  .calendar-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .calendar-placeholder {
+    background: #f0f0f0;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .contact-form-wrapper,
+    .schedule-form-wrapper {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
+
+<script>
+  function setupContactPage() {
+    const contactSection = document.getElementById('contact');
+    if (!contactSection) {
+      return; 
+    }
+
+    const tabs = contactSection.querySelectorAll('.tab-link');
+    const tabContents = contactSection.querySelectorAll('.tab-content');
+
+    if (tabs.length === 0) {
+      return; 
+    }
+
+    const handleTabClick = (e) => {
+      const clickedTab = e.currentTarget;
+      tabs.forEach(tab => tab.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      clickedTab.classList.add('active');
+      const targetId = clickedTab.dataset.tab;
+      const targetContent = document.getElementById(targetId);
+      
+      if (targetContent) {
+        targetContent.classList.add('active');
+      } else {
+        console.warn(`No tab content found for ID: ${targetId}`);
+      }
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', handleTabClick);
+    });
+
+    document.addEventListener('astro:before-swap', () => {
+      tabs.forEach(tab => {
+        tab.removeEventListener('click', handleTabClick);
+      });
+    }, { once: true });
+  }
+
+  document.addEventListener('astro:page-load', setupContactPage);
+</script>
