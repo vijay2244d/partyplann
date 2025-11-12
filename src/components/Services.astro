@@ -3,24 +3,28 @@ import ServiceCard from './ServiceCard.svelte';
 
 const services = [
   {
+    id: 'birthday',
     icon: '🎉',
     title: 'Birthday Parties',
-    description: 'Magical and memorable birthday parties for all ages. We handle everything from decorations and entertainment to catering and cleanup.'
+    description: 'Tell us about your dream birthday party! What theme are you imagining? How many guests are you expecting? Let us handle the magic.'
   },
   {
+    id: 'wedding',
     icon: '💍',
     title: 'Weddings',
-    description: 'Full-service wedding planning to make your special day perfect. We handle venue selection, vendor coordination, design, and day-of management.'
+    description: 'Describe your perfect wedding day. From the venue to the vows, we want to know every detail to make your special day unforgettable.'
   },
   {
+    id: 'corporate',
     icon: '👔',
     title: 'Corporate Events',
-    description: 'Flawless corporate events, from product launches and conferences to holiday parties and team-building retreats. We ensure a professional and engaging experience.'
+    description: 'What are the goals for your next corporate event? Whether it is a product launch, a conference, or a team-building retreat, we deliver excellence.'
   },
   {
-    icon: '🎈',
-    title: 'Other Events',
-    description: 'We can plan any type of event you can dream of. Just let us know what you have in mind, and we will make it happen.'
+    id: 'anniversary',
+    icon: '💖',
+    title: 'Anniversaries',
+    description: 'How do you envision celebrating this milestone? Let us help you create a romantic and memorable anniversary celebration.'
   }
 ];
 ---
@@ -28,11 +32,10 @@ const services = [
 <section id="services" class="services-section">
   <div class="container">
     <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">A new world of interactive party planning awaits. Click the icons below to see the magic happen!</p>
     <div class="services-grid">
-      {services.map((service, index) => (
-        <div class="service-card-wrapper" style={`--animation-order: ${index};`}>
-          <ServiceCard client:visible service={service} />
-        </div>
+      {services.map((service) => (
+          <ServiceCard service={service} client:visible />
       ))}
     </div>
   </div>
@@ -41,59 +44,33 @@ const services = [
 <style>
   .services-section {
     padding: 5rem 2rem;
-    overflow-x: hidden; /* Prevent horizontal scrollbars from animations */
+    background-color: #f9f4fB;
   }
 
   .section-title {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    color: #333;
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
     text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 4rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1300px;
     margin: 0 auto;
   }
 
-  /* Animation styles */
-  .service-card-wrapper {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    transition-delay: calc(var(--animation-order) * 150ms);
-  }
-
-  .service-card-wrapper.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
 </style>
-
-<script>
-  // This script runs on the client to add animations when elements scroll into view.
-  // It correctly uses the `astro:page-load` event to work with Astro's View Transitions.
-  document.addEventListener('astro:page-load', () => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        // When the element is in view, add the 'is-visible' class
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          // Stop observing the element so the animation doesn't re-run
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.1, // Trigger when at least 10% of the element is visible
-    });
-
-    // Observe all the service card wrappers
-    const cards = document.querySelectorAll('.service-card-wrapper');
-    cards.forEach(card => {
-      observer.observe(card);
-    });
-  });
-</script>

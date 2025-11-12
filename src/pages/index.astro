@@ -15,8 +15,17 @@ import { Counter } from '../components/react/ReactCounter.tsx';
 </MainLayout>
 
 <style>
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: calc(100vh - 100px); /* Adjust for header height */
+  }
+
   .title {
     font-family: 'Pacifico', cursive;
+    font-size: 5rem; /* Increased font size */
     min-height: 1.5em; /* Prevent layout shift */
   }
 

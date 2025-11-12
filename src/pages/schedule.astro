@@ -5,27 +5,39 @@ import MainLayout from '../layouts/MainLayout.astro';
 <MainLayout>
   <section class="schedule-section">
     <div class="container">
-      <h2 class="section-title">Schedule an Appointment</h2>
-      <div class="schedule-form-wrapper">
-        <form action="#" method="POST">
-          <div class="form-group">
-            <label for="sched-name">Your Name</label>
-            <input type="text" id="sched-name" name="name" required>
+      <div class="schedule-wrapper">
+        <!-- Left Column: Form -->
+        <div class="form-container">
+          <h2 class="form-title">Book Your Free Consultation</h2>
+          <p class="form-subtitle">Let's start planning the party of a lifetime. Fill out the form below, and we'll be in touch!</p>
+          <form action="#" method="POST">
+            <div class="form-group">
+              <label for="sched-name">Your Name</label>
+              <input type="text" id="sched-name" name="name" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+              <label for="sched-email">Your Email</label>
+              <input type="email" id="sched-email" name="email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label for="sched-phone">Your Phone</label>
+              <input type="tel" id="sched-phone" name="phone" required placeholder="(555) 123-4567">
+            </div>
+            <div class="form-group">
+              <label for="sched-date">Preferred Date</label>
+              <input type="date" id="sched-date" name="date" required>
+            </div>
+            <button type="submit" class="submit-button">Send Request</button>
+          </form>
+        </div>
+
+        <!-- Right Column: Visual Element -->
+        <div class="visual-container">
+          <div class="visual-content">
+            <h3>Ready for an Unforgettable Event?</h3>
+            <p>We're excited to hear from you. Once you submit your request, one of our party architects will get back to you within 24 hours to confirm your consultation.</p>
           </div>
-          <div class="form-group">
-            <label for="sched-email">Your Email</label>
-            <input type="email" id="sched-email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="sched-phone">Your Phone Number</label>
-            <input type="tel" id="sched-phone" name="phone" required>
-          </div>
-          <div class="form-group">
-            <label for="sched-date">Event Date</label>
-            <input type="date" id="sched-date" name="date" required>
-          </div>
-          <button type="submit" class="cta-button">Submit Request</button>
-        </form>
+        </div>
       </div>
     </div>
   </section>
@@ -33,60 +45,117 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 <style>
   .schedule-section {
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
+    background-color: #f0e6f2; /* Light purple background */
   }
 
-  .section-title {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    color: #333;
-    text-align: center;
-  }
-
-  .schedule-form-wrapper {
-    max-width: 600px;
+  .container {
+    max-width: 1200px;
     margin: 0 auto;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .schedule-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+
+  /* Form Styles */
+  .form-container {
+    padding: 4rem;
+  }
+
+  .form-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.8rem;
+    color: #c4a7e7;
+    margin-bottom: 1rem;
+  }
+
+  .form-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
   }
 
   .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
   }
 
   label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
     font-weight: 700;
+    color: #444;
   }
 
-  input,
-  textarea {
+  input {
     width: 100%;
     padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
     font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
   }
 
-  .cta-button {
+  input:focus {
+    outline: none;
+    border-color: #c4a7e7;
+    box-shadow: 0 0 0 4px rgba(196, 167, 231, 0.3);
+  }
+
+  /* Visual Column Styles */
+  .visual-container {
+    background: linear-gradient(135deg, #c4a7e7, #a380d3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    text-align: center;
+  }
+
+  .visual-content h3 {
+    font-family: 'Pacifico', cursive; /* Changed font */
+    font-size: 3rem; /* Increased font size */
+    margin-bottom: 1.5rem;
+    font-weight: 400; /* Adjusted font weight for Pacifico */
+    text-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  }
+
+  .visual-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Button Styles */
+  .submit-button {
     display: inline-block;
+    width: 100%;
     padding: 1rem 2rem;
-    background: #ff69b4;
-    color: #fff;
+    background-color: #c4a7e7;
+    color: white;
     text-decoration: none;
     font-weight: 700;
-    border-radius: 50px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 100%;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 20px rgba(196, 167, 231, 0.5);
   }
 
-  .cta-button:hover {
-    background: #ff1493;
-    transform: scale(1.05);
+  .submit-button:hover {
+    background-color: #b390d6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(196, 167, 231, 0.7);
   }
 </style>
