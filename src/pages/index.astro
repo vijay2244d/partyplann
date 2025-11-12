@@ -6,16 +6,90 @@ import { Counter } from '../components/react/ReactCounter.tsx';
 <MainLayout>
   <section class="hero">
     <div class="hero-content">
-      <h1 class="title">Welcome to Party Time!</h1>
+      <h1 class="title blast-text">Welcome to Party Time!</h1>
       <p class="subtitle">Your one-stop shop for all party needs.</p>
       <a href="/services" class="cta-button">Our Services</a>
     </div>
   </section>
-  <Counter />
+  <Counter client:visible />
 </MainLayout>
 
 <style>
   .title {
     font-family: 'Pacifico', cursive;
+    min-height: 1.5em; /* Prevent layout shift */
+  }
+
+  .blast-text {
+    opacity: 1; /* Container must be visible */
+  }
+
+  @keyframes popper-blast-in {
+    from {
+      opacity: 0;
+      transform: translate(var(--start-x), var(--start-y)) scale(1.5) rotate(var(--start-rot));
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0) scale(1) rotate(0);
+    }
+  }
+
+  .blast-text span {
+    display: inline-block;
+    opacity: 0; /* Initially hidden */
+  }
+
+  /* This class on the parent triggers the animation on the child spans */
+  .blast-text.animate span {
+    animation-name: popper-blast-in;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* A bouncy easing function */
+    animation-fill-mode: forwards; /* Keep the final animated state */
   }
 </style>
+
+<script>
+  function setupPopperAnimation() {
+    const textElement = document.querySelector('.blast-text');
+    
+    // Do nothing if the element is missing or has already been animated
+    if (!textElement || textElement.classList.contains('animate')) {
+      return;
+    }
+
+    const text = textElement.textContent.trim();
+    textElement.textContent = ''; // Clear the original text to prevent flashing
+
+    // Create a span for each letter
+    for (let i = 0; i < text.length; i++) {
+      const letter = text[i];
+      const span = document.createElement('span');
+      span.textContent = letter;
+
+      if (letter.trim() === '') {
+        span.style.width = '0.5em'; // Ensure spaces have visual width
+      }
+
+      // Set random starting positions and rotation for the animation
+      span.style.setProperty('--start-x', `${Math.random() * 400 - 200}px`);
+      span.style.setProperty('--start-y', `${Math.random() * 300 - 150}px`);
+      span.style.setProperty('--start-rot', `${Math.random() * 90 - 45}deg`);
+      
+      // Stagger the animation start for each letter
+      span.style.animationDelay = `${i * 0.035}s`;
+      
+      textElement.appendChild(span);
+    }
+
+    // Add the 'animate' class to the parent to trigger the animation on all spans
+    textElement.classList.add('animate');
+  }
+
+  // Listen for Astro's specific page load event to run the animation.
+  // This is the correct way to work with Astro's View Transitions.
+  document.addEventListener('astro:page-load', setupPopperAnimation);
+
+  // Also run the function directly on first load
+  setupPopperAnimation();
+</script>

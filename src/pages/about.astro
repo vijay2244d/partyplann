@@ -3,17 +3,32 @@ import MainLayout from '../layouts/MainLayout.astro';
 ---
 
 <MainLayout>
-  <section id="about" class="about-section">
+  <!-- Step 1: Envelope Animation Container -->
+  <div id="envelope-container">
+    <div id="envelope">
+      <div class="front flap"></div>
+      <div class="front pocket"></div>
+      <div class="letter"></div>
+      <div class="back"></div>
+    </div>
+    <div class="click-message">
+      <p>Click to reveal our story</p>
+    </div>
+  </div>
+
+  <!-- Step 3: Main Content (Initially Hidden) -->
+  <section id="about-section" class="hidden">
     <div class="container">
-      <h2 class="section-title">About Us</h2>
+      <h2 class="section-title">About Our Passion for Parties</h2>
       <div class="about-content">
-        <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="A vibrant and lively party scene with a group of friends enjoying themselves at a beautifully decorated venue. The image captures the energy and excitement of a well-planned event, with colorful decorations, festive lighting, and a joyful atmosphere." />
-        </div>
         <div class="about-text">
           <h3>Who We Are</h3>
           <p>
-            We are a team of passionate party planners dedicated to creating unforgettable experiences. We believe that every celebration should be special and unique, and we work tirelessly to bring our clients' visions to life. From small, intimate gatherings to large, extravagant events, we handle every detail with precision and care. Our goal is to make the planning process seamless and stress-free, so you can relax and enjoy your special day.
+            Founded by a team of dreamers and detail-oriented dynamos, Party Time was born from a simple belief: every milestone deserves to be magnificent. We saw a world full of cookie-cutter celebrations and knew we could offer something more—something with heart, soul, and a touch of sparkle.
+          </p>
+          <h3>Meet the Magic Makers</h3>
+          <p>
+            Our team is a vibrant mix of creative designers, logistical wizards, and experienced event producers. We work tirelessly behind the scenes so you can be a guest at your own event.
           </p>
         </div>
       </div>
@@ -22,7 +37,43 @@ import MainLayout from '../layouts/MainLayout.astro';
 </MainLayout>
 
 <style>
-  .about-section {
+  /* Full-screen container for the animation */
+  #envelope-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0e6f2;
+    z-index: 40; /* Lowered to be behind the header (z-index: 50) */
+    opacity: 1;
+    transition: opacity 0.8s ease-in-out;
+    cursor: pointer;
+  }
+
+  #envelope-container.hidden {
+    opacity: 0;
+    pointer-events: none; /* Disable clicks after it starts hiding */
+  }
+
+  /* Main content section, initially hidden */
+  #about-section.hidden {
+    opacity: 0;
+  }
+
+  #about-section.visible {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
+  /* Main Content Layout */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 5rem 2rem;
   }
 
@@ -31,24 +82,122 @@ import MainLayout from '../layouts/MainLayout.astro';
     margin-bottom: 3rem;
     color: #333;
     text-align: center;
+    font-family: 'Pacifico', cursive;
   }
 
   .about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    /* Content is now single-column */
   }
 
-  .about-image img {
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  .about-text {
+    max-width: 800px; /* Constrain width for better readability */
+    margin: 0 auto; /* Center the text block */
   }
 
   .about-text h3 {
     font-size: 2rem;
+    margin-top: 2rem;
     margin-bottom: 1.5rem;
     color: #333;
+    text-align: center;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
+  /* Envelope Styles */
+  #envelope {
+    position: relative;
+    width: 320px;
+    height: 220px;
+  }
+
+  .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #c4a7e7;
+    border-radius: 5px;
+  }
+
+  .letter {
+    position: absolute;
+    top: 0;
+    width: 96%;
+    height: 96%;
+    background-color: white;
+    border-radius: 5px;
+    margin: 2%;
+    transition: transform 0.8s 0.2s;
+  }
+
+  .front {
+    position: absolute;
+    border-right: 160px solid #d1b3f0;
+    border-top: 110px solid transparent;
+    border-bottom: 110px solid transparent;
+    height: 0;
+    width: 0;
+    left: 160px;
+  }
+
+  .flap {
+    border-right: 160px solid #c4a7e7;
+    transform-origin: 0 110px;
+    transition: transform 0.6s ease-in-out;
+    z-index: 10;
+  }
+
+  .pocket {
+    border-top: 110px solid #e0c8f5;
+    top: auto;
+    bottom: 0;
+  }
+
+  #envelope-container.open #envelope .flap {
+    transform: rotateX(180deg);
+  }
+
+  #envelope-container.open #envelope .letter {
+    transform: translateY(-80px);
+  }
+
+  .click-message {
+    margin-top: 2rem;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.5rem;
+    color: #5a3a73;
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const envelopeContainer = document.getElementById('envelope-container');
+    const aboutSection = document.getElementById('about-section');
+
+    if (envelopeContainer && aboutSection) {
+      const revealContent = () => {
+        // 1. Add .open class to play the envelope animation
+        envelopeContainer.classList.add('open');
+
+        // 2. After a delay, fade out the entire envelope container
+        setTimeout(() => {
+          envelopeContainer.classList.add('hidden');
+        }, 1500); // Wait for the open animation to be noticeable
+
+        // 3. After the fade-out is complete, reveal the main content
+        setTimeout(() => {
+          aboutSection.classList.remove('hidden');
+          aboutSection.classList.add('visible');
+        }, 2300); // 1500ms + 800ms for the fade-out transition
+        
+        // Make sure this only runs once
+        envelopeContainer.removeEventListener('click', revealContent);
+      };
+
+      envelopeContainer.addEventListener('click', revealContent);
+    }
+  });
+</script>
