@@ -14,36 +14,39 @@ This project is a static-first web application built with Astro.js. It is a part
 *   **Visual Effects**: Multi-layered drop shadows create depth, making cards look "lifted."
 *   **Iconography**: Icons are used to enhance user understanding and navigation.
 *   **Interactivity**: Interactive elements have a "glow" effect.
-*   **Animations**: The website features a "popper blast" intro animation and full-screen, cinematic animations for the "About Us," "Contact," and all "Services" pages.
+*   **Animations**: The website features a "popper blast" intro animation and full-screen, cinematic intro animations for the "About Us," "Contact," and all "Services" pages.
 
 ### Features
 
 *   **Hero Section**: A full-screen hero section with a captivating, large, and centered headline, along with a prominent call-to-action.
-*   **Services Section**: A gallery of interactive service cards. Clicking a card launches a full-screen, cinematic animation (e.g., blowing out a candle on a birthday cake, watching wedding rings glow). After the interaction, the view seamlessly transitions to an inquiry form, creating a high-impact, immersive user experience.
+*   **Services Section**: A gallery of service cards, each with its own unique, full-screen, multi-stage interactive animation that seamlessly redirects the user to the main Contact Us page after completion.
+    *   **Wedding**: An interactive animation where users unite two wedding rings.
+    *   **Birthday**: An interactive "make a wish" animation where the user clicks to blow out a candle on a larger, more festive, multi-layered cake, correctly positioned above the title.
+    *   **Corporate**: A guided experience featuring a new, high-fidelity, meticulously crafted, brand-aligned SVG of a professional inviting the user to connect.
+    *   **Anniversary**: A spectacular celebration where a click from the user fills a heart with color, triggering a voluminous and natural "spill" of heart emojis that tumble and settle at the bottom of the screen.
 *   **Reviews Section**: A page with unique, curated reviews from past clients.
 *   **About Us Section**: A highly engaging, animated introduction to the brand story and team, presented in a clean, text-focused layout with a full-screen envelope reveal.
 *   **Contact Section**: A standard contact form and contact information, accessed via a playful, full-screen ringing phone animation.
-*   **Schedule an Appointment Page**: A dedicated form for users to schedule a consultation, featuring a modern, text-focused two-column layout with a refined and elegant design.
+*   **Schedule an Appointment Page**: A dedicated form for users to schedule a consultation, featuring a modern, text-focused two-column layout.
 *   **Navigation**: A clear and intuitive navigation bar with interactive elements, including a "Home" button.
-*   **Interactive Components**: Includes interactive "islands" built with UI frameworks like Svelte and React.
+*   **Interactive Components**: Includes interactive "islands" built with UI frameworks like Svelte.
+*   **Mobile Responsiveness**: The entire website is fully responsive, ensuring a seamless experience on all devices.
 
 ## Implemented Changes
 
 *   **Initial Setup & Error Correction**: Set up the project and fixed various bugs.
 *   **Page Creation & Layout**: Created all site pages and a consistent main layout.
 *   **Header and Navigation**: Implemented the site's primary navigation.
-*   **Contact Page Refactor**: Separated "Schedule an Appointment" into its own page.
-*   **Content Updates**: Added unique content for the Reviews and About Us pages.
-*   **Form Enhancements**: Improved the "Schedule an Appointment" form with a phone number field and date picker.
-*   **Intro Animation**: Added a "popper blast" animation to the homepage title.
-*   **Performance Optimization**: Implemented `client:visible` for lazy-loading interactive components.
-*   **"About Us" Cinematic Reveal**: Designed a full-screen envelope-opening animation.
-*   **"Contact" Full-Screen Animation**: Created an interactive, full-screen ringing phone animation.
-*   **Header Styling and Polish**: Corrected CSS conflicts and improved homepage typography.
-*   **"Schedule an Appointment" Redesign**: Transformed the page into a modern, two-column layout.
-*   **Interactive Service Card Animations**: Created unique, multi-stage animations for Birthday, Wedding, and Corporate services.
-*   **Full-Screen Service Animations**: Refactored the service card interactions into a full-screen, cinematic experience. Clicking a service now launches an immersive overlay with a large-scale animation that transitions into the inquiry form, mirroring the high-impact design of the "About Us" and "Contact" page animations.
+*   **Content & Form Enhancements**: Refactored the contact page and improved forms.
+*   **Cinematic Intros**: Designed and implemented full-screen, automatic animations for "About Us" and "Contact."
+*   **Header and Homepage Polish**: Corrected CSS conflicts and improved typography.
+*   **Complete Overhaul of Services Section**: Transformed the services gallery into a collection of unique, multi-stage, interactive animations that all redirect to the contact page.
+    *   Engineered the interactive "Wedding" ring union animation.
+    *   Upgraded the "Birthday" animation with a larger, multi-layered cake and an enhanced "blow out" effect, and corrected its positioning.
+    *   Redesigned the "Corporate" doodle to be a faithful, high-quality representation of the brand's professional image.
+    *   Perfected the "Anniversary" animation with a more voluminous, natural, and fluid "heart spill" effect.
+*   **Mobile Responsiveness**: Conducted a site-wide audit and implemented responsive design principles to ensure a seamless experience on all devices.
 
 ## Current Plan
 
-The requested features have been implemented. Awaiting further requests.
+All requested features have been implemented. Awaiting further requests.
