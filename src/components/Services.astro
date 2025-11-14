@@ -35,7 +35,7 @@ const services = [
     <p class="section-subtitle">A new world of interactive party planning awaits. Click the icons below to see the magic happen!</p>
     <div class="services-grid">
       {services.map((service) => (
-          <ServiceCard service={service} client:visible />
+          <ServiceCard service={service} client:load />
       ))}
     </div>
   </div>
@@ -43,13 +43,13 @@ const services = [
 
 <style>
   .services-section {
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
     background-color: #f9f4fB;
   }
 
   .section-title {
     font-family: 'Pacifico', cursive;
-    font-size: 3.5rem;
+    font-size: 4rem;
     text-align: center;
     color: #333;
     margin-bottom: 1rem;
@@ -57,20 +57,29 @@ const services = [
 
   .section-subtitle {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #666;
-    margin-bottom: 4rem;
-    max-width: 600px;
+    margin-bottom: 5rem;
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    max-width: 1300px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .section-title {
+      font-size: 3rem;
+    }
+  }
 </style>

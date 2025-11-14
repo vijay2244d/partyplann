@@ -17,19 +17,47 @@ import MainLayout from '../layouts/MainLayout.astro';
   </div>
 
   <!-- Step 3: Main Content (Initially Hidden) -->
-  <section id="about-section" class="hidden">
+  <section id="about-section" hidden>
     <div class="container">
-      <h2 class="section-title">About Our Passion for Parties</h2>
-      <div class="about-content">
-        <div class="about-text">
-          <h3>Who We Are</h3>
-          <p>
-            Founded by a team of dreamers and detail-oriented dynamos, Party Time was born from a simple belief: every milestone deserves to be magnificent. We saw a world full of cookie-cutter celebrations and knew we could offer something more—something with heart, soul, and a touch of sparkle.
-          </p>
-          <h3>Meet the Magic Makers</h3>
-          <p>
-            Our team is a vibrant mix of creative designers, logistical wizards, and experienced event producers. We work tirelessly behind the scenes so you can be a guest at your own event.
-          </p>
+      <h2 class="section-title">Our Story: The Art of Celebration</h2>
+      <div class="about-intro">
+        <p>
+          Founded by a team of dreamers and detail-oriented dynamos, Party Time was born from a simple belief: every milestone deserves to be magnificent. We saw a world full of cookie-cutter celebrations and knew we could offer something more—something with heart, soul, and a touch of bespoke sparkle. We are not just planners; we are architects of joy, crafting immersive experiences that reflect your unique story.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Our Philosophy -->
+        <div class="about-card">
+          <h3>Our Philosophy</h3>
+          <p>We believe that celebration is a fundamental human need. It connects us, inspires us, and creates memories that last a lifetime. Our philosophy is rooted in the idea that every event should be a masterpiece of personal expression, meticulously designed and flawlessly executed.</p>
+        </div>
+
+        <!-- Our Commitment -->
+        <div class="about-card">
+          <h3>Our Commitment</h3>
+          <p>Our commitment is to you. We are dedicated to providing a seamless and stress-free planning experience. From the initial concept to the final farewell, we are your partners, ensuring every detail is perfect so you can be fully present and enjoy your own celebration.</p>
+        </div>
+      </div>
+
+      <div class="team-section">
+        <h2 class="section-title">Meet the Visionaries</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <img src="https://i.pravatar.cc/150?img=11" alt="Portrait of Jane Doe" />
+            <h4>Jane Doe</h4>
+            <p>Lead Creative Director</p>
+          </div>
+          <div class="team-member">
+            <img src="https://i.pravatar.cc/150?img=12" alt="Portrait of John Smith" />
+            <h4>John Smith</h4>
+            <p>Head of Operations</p>
+          </div>
+          <div class="team-member">
+            <img src="https://i.pravatar.cc/150?img=13" alt="Portrait of Emily White" />
+            <h4>Emily White</h4>
+            <p>Client Relations Manager</p>
+          </div>
         </div>
       </div>
     </div>
@@ -38,165 +66,63 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 <style>
   /* Full-screen container for the animation */
-  #envelope-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0e6f2;
-    z-index: 40; /* Lowered to be behind the header (z-index: 50) */
-    opacity: 1;
-    transition: opacity 0.8s ease-in-out;
-    cursor: pointer;
-  }
-
-  #envelope-container.hidden {
-    opacity: 0;
-    pointer-events: none; /* Disable clicks after it starts hiding */
-  }
+  #envelope-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #f0e6f2; z-index: 100; opacity: 1; transition: opacity 0.8s ease-in-out; cursor: pointer; }
+  #envelope-container.fade-out { opacity: 0; pointer-events: none; }
 
   /* Main content section, initially hidden */
-  #about-section.hidden {
-    opacity: 0;
-  }
-
-  #about-section.visible {
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-  }
+  #about-section { opacity: 0; transition: opacity 1s ease-in-out; }
+  #about-section.visible { opacity: 1; }
 
   /* Main Content Layout */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-title { font-size: 3rem; margin-bottom: 3rem; color: #333; text-align: center; font-family: 'Pacifico', cursive; }
 
-  .section-title {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    color: #333;
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-  }
+  .about-intro { text-align: center; max-width: 800px; margin: 0 auto 4rem; }
+  .about-intro p { font-size: 1.2rem; line-height: 1.8; color: #555; }
 
-  .about-content {
-    /* Content is now single-column */
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 5rem; }
+  .about-card { background: #fff; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+  .about-card h3 { font-size: 1.8rem; margin-bottom: 1.5rem; color: #8a4baf; }
+  .about-card p { font-size: 1rem; line-height: 1.7; }
 
-  .about-text {
-    max-width: 800px; /* Constrain width for better readability */
-    margin: 0 auto; /* Center the text block */
-  }
-
-  .about-text h3 {
-    font-size: 2rem;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-    text-align: center;
-  }
-
-  .about-text p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-  }
+  .team-section { text-align: center; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .team-member img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+  .team-member h4 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .team-member p { color: #777; }
 
   /* Envelope Styles */
-  #envelope {
-    position: relative;
-    width: 320px;
-    height: 220px;
-  }
+  #envelope { position: relative; width: 320px; height: 220px; }
+  .back { position: absolute; width: 100%; height: 100%; background-color: #c4a7e7; border-radius: 5px; }
+  .letter { position: absolute; top: 0; width: 96%; height: 96%; background-color: white; border-radius: 5px; margin: 2%; transition: transform 0.8s 0.2s; }
+  .front { position: absolute; border-right: 160px solid #d1b3f0; border-top: 110px solid transparent; border-bottom: 110px solid transparent; height: 0; width: 0; left: 160px; }
+  .flap { border-right: 160px solid #c4a7e7; transform-origin: 0 110px; transition: transform 0.6s ease-in-out; z-index: 10; }
+  .pocket { border-top: 110px solid #e0c8f5; top: auto; bottom: 0; }
+  #envelope-container.open .flap { transform: rotateX(180deg); }
+  #envelope-container.open .letter { transform: translateY(-80px); }
+  .click-message { margin-top: 2rem; font-family: 'Pacifico', cursive; font-size: 1.5rem; color: #5a3a73; }
 
-  .back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #c4a7e7;
-    border-radius: 5px;
-  }
-
-  .letter {
-    position: absolute;
-    top: 0;
-    width: 96%;
-    height: 96%;
-    background-color: white;
-    border-radius: 5px;
-    margin: 2%;
-    transition: transform 0.8s 0.2s;
-  }
-
-  .front {
-    position: absolute;
-    border-right: 160px solid #d1b3f0;
-    border-top: 110px solid transparent;
-    border-bottom: 110px solid transparent;
-    height: 0;
-    width: 0;
-    left: 160px;
-  }
-
-  .flap {
-    border-right: 160px solid #c4a7e7;
-    transform-origin: 0 110px;
-    transition: transform 0.6s ease-in-out;
-    z-index: 10;
-  }
-
-  .pocket {
-    border-top: 110px solid #e0c8f5;
-    top: auto;
-    bottom: 0;
-  }
-
-  #envelope-container.open #envelope .flap {
-    transform: rotateX(180deg);
-  }
-
-  #envelope-container.open #envelope .letter {
-    transform: translateY(-80px);
-  }
-
-  .click-message {
-    margin-top: 2rem;
-    font-family: 'Pacifico', cursive;
-    font-size: 1.5rem;
-    color: #5a3a73;
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
   }
 </style>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     const envelopeContainer = document.getElementById('envelope-container');
     const aboutSection = document.getElementById('about-section');
 
     if (envelopeContainer && aboutSection) {
       const revealContent = () => {
-        // 1. Add .open class to play the envelope animation
         envelopeContainer.classList.add('open');
-
-        // 2. After a delay, fade out the entire envelope container
         setTimeout(() => {
-          envelopeContainer.classList.add('hidden');
-        }, 1500); // Wait for the open animation to be noticeable
-
-        // 3. After the fade-out is complete, reveal the main content
-        setTimeout(() => {
-          aboutSection.classList.remove('hidden');
-          aboutSection.classList.add('visible');
-        }, 2300); // 1500ms + 800ms for the fade-out transition
-        
-        // Make sure this only runs once
+          envelopeContainer.classList.add('fade-out');
+          aboutSection.hidden = false;
+          setTimeout(() => aboutSection.classList.add('visible'), 50);
+        }, 800); // Delay after flap animation
         envelopeContainer.removeEventListener('click', revealContent);
       };
-
       envelopeContainer.addEventListener('click', revealContent);
     }
   });

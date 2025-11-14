@@ -15,9 +15,9 @@ export default defineConfig({
   integrations: [
       preact({ include: ['**/preact/*'] }),
       solid({ include: ['**/solid/*'] }),
-      react(),
-      svelte(),
-      vue(),
+      react({ include: ['**/react/*'] }), // Restrict React to its own folder to prevent conflicts
+      svelte(), // Allow svelte to be used anywhere
+      vue({ include: ['**/vue/*'] }),
 	],
 
   vite: {
