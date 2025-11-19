@@ -15,6 +15,19 @@ import Footer from '../components/Footer.astro';
   img { max-width: 100%; height: auto; display: block; }
   h1, h2, h3, h4 { line-height: 1.2; margin-bottom: 1rem; }
 
+  /* Fluid Typography */
+  :root {
+    --font-size-base: clamp(1rem, 0.9vw + 0.5rem, 1.1rem);
+    --font-size-lg: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
+    --font-size-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+    --font-size-xxl: clamp(2rem, 4vw + 0.5rem, 4rem);
+  }
+
+  h1 { font-size: var(--font-size-xxl); }
+  h2 { font-size: var(--font-size-xl); }
+  h3 { font-size: var(--font-size-lg); }
+  body { font-size: var(--font-size-base); }
+
   /* Main Layout Structure */
   body {
     display: flex;
@@ -23,11 +36,11 @@ import Footer from '../components/Footer.astro';
   }
   main {
     flex-grow: 1;
-    padding: 2rem;
+    padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
   }
 
   /* Utility Classes */
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
   .text-center { text-align: center; }
 
   /* Header & Footer */
@@ -45,13 +58,6 @@ import Footer from '../components/Footer.astro';
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
-  
-  <style>
-    #phone-animation-overlay { /* styles... */ }
-    .phone-icon { /* styles... */ }
-    @keyframes ring { /* styles... */ }
-    .click-to-answer { /* styles... */ }
-  </style>
 </head>
 <body>
   <Header />
@@ -59,12 +65,4 @@ import Footer from '../components/Footer.astro';
     <slot />
   </main>
   <Footer />
-
-  <!-- Ringing Phone Animation Overlay -->
-  <div id="phone-animation-overlay" class="hidden">
-    <div class="phone-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-    </div>
-    <p class="click-to-answer">Click to answer</p>
-  </div>
 </body>

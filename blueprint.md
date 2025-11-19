@@ -26,8 +26,8 @@ This project is a static-first web application built with Astro.js. It is a part
     *   **Anniversary**: A spectacular celebration where a click from the user fills a heart with color, triggering a voluminous "spill" of heart emojis.
 *   **Reviews Section**: A page with unique, curated reviews from past clients.
 *   **About Us Section**: A highly engaging, click-triggered animated introduction that reveals a professionally written brand story. The page includes sections for "Our Philosophy," "Our Commitment," and a showcase of the team.
-*   **Contact Section**: A simple and clean, click-triggered intro animation featuring a shaking call icon before revealing the contact form and information.
-*   **Schedule an Appointment Page**: A dedicated form for users to schedule a consultation.
+*   **Contact Section**: A simple and clean, click-triggered intro animation featuring a shaking call icon before revealing the contact form and information. The form includes fields for name, email, place, and message.
+*   **Schedule an Appointment Page**: A dedicated form for users to schedule a consultation, with an entry animation consistent with the contact page. The form includes fields for name, email, phone, place, and preferred date.
 *   **Navigation**: A clear and intuitive navigation bar with interactive elements.
 *   **Mobile Responsiveness**: The entire website is fully responsive, ensuring a seamless experience on all devices.
 
@@ -41,9 +41,9 @@ This project is a static-first web application built with Astro.js. It is a part
 *   **Complete Overhaul of Services Section**: Transformed the services gallery into a collection of unique, multi-stage, interactive animations.
 *   **Animation Performance & Content Polish**: Re-engineered animation transitions, improved content on the "About Us" page, and ensured all animations are responsive.
 *   **Contact Page Animation Redesign**: Replaced the full-screen "ringing phone" animation with a simpler, click-triggered "shaking call icon" animation as per user request.
+*   **Fluid Design and Animation Replication**: Improved the website's adaptability by using fluid typography and spacing. Replicated the contact page's entry animation to the "Party Discussion" page for a consistent user experience.
+*   **Form Updates**: Added a "Place" field to both the contact and "Party Discussion" forms.
 
 ## Current Plan
 
-**DEPLOYMENT HOLD:** The project is currently on hold for client review. **DO NOT DEPLOY** the website until explicit confirmation is received from the user after client approval.
-
-Awaiting feedback from the client before proceeding with any further changes or the final deployment.
+**DESIGN FREEZE:** The layout and style of the website are now considered final. **DO NOT** make any further changes to the design without explicit permission from the user.
