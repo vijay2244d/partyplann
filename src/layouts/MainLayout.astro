@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hyperspeed from '../components/Hyperspeed.jsx';
 ---
 
 <script>
@@ -11,9 +12,10 @@ import Footer from '../components/Footer.astro';
   /* CSS Reset & Base Styles */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; scroll-behavior: smooth; }
-  body { font-family: 'Poppins', sans-serif; background-color: #F9F4FB; color: #333; line-height: 1.6; }
+  body { font-family: 'Poppins', sans-serif; line-height: 1.6; }
+  main { color: #FFFFFF; } /* Set main content text to white */
   img { max-width: 100%; height: auto; display: block; }
-  h1, h2, h3, h4 { line-height: 1.2; margin-bottom: 1rem; }
+  h1, h2, h3, h4 { line-height: 1.2; margin-bottom: 1rem; color: #FFFFFF;}
 
   /* Fluid Typography */
   :root {
@@ -37,18 +39,13 @@ import Footer from '../components/Footer.astro';
   main {
     flex-grow: 1;
     padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
+    position: relative;
+    z-index: 1;
   }
 
   /* Utility Classes */
   .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
   .text-center { text-align: center; }
-
-  /* Header & Footer */
-  /* These will be styled in their own components */
-</style>
-
-<style>
-  /* Scoped styles for the layout component can go here if needed */
 </style>
 
 <head>
@@ -60,6 +57,7 @@ import Footer from '../components/Footer.astro';
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+  <Hyperspeed client:only="react" effect="one" />
   <Header />
   <main>
     <slot />
