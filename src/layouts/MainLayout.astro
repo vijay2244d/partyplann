@@ -1,66 +1,136 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Hyperspeed from '../components/Hyperspeed.jsx';
 ---
 
-<script>
-  // No script needed for this component
-</script>
-
-<style is:global>
-  /* CSS Reset & Base Styles */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 16px; scroll-behavior: smooth; }
-  body { font-family: 'Poppins', sans-serif; line-height: 1.6; }
-  main { color: #FFFFFF; } /* Set main content text to white */
-  img { max-width: 100%; height: auto; display: block; }
-  h1, h2, h3, h4 { line-height: 1.2; margin-bottom: 1rem; color: #FFFFFF;}
-
-  /* Fluid Typography */
-  :root {
-    --font-size-base: clamp(1rem, 0.9vw + 0.5rem, 1.1rem);
-    --font-size-lg: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
-    --font-size-xl: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
-    --font-size-xxl: clamp(2rem, 4vw + 0.5rem, 4rem);
-  }
-
-  h1 { font-size: var(--font-size-xxl); }
-  h2 { font-size: var(--font-size-xl); }
-  h3 { font-size: var(--font-size-lg); }
-  body { font-size: var(--font-size-base); }
-
-  /* Main Layout Structure */
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  main {
-    flex-grow: 1;
-    padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Utility Classes */
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem); }
-  .text-center { text-align: center; }
-</style>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Party Time - Plan Your Perfect Event</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Party Time - Plan Your Perfect Event</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <style>
+        :root {
+            --background-color: #fff;
+            --text-color: #333;
+            --header-bg: #fff;
+            --header-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            --logo-color: #8a4baf;
+            --nav-link-color: #333;
+            --nav-link-hover-color: #8a4baf;
+            --cta-bg: #8a4baf;
+            --cta-text-color: #fff;
+            --cta-hover-shadow: 0 5px 15px rgba(138, 75, 175, 0.3);
+            --switch-bg-color: #ccc;
+            --switch-handle-color: white;
+            --switch-bg-color-checked: #8a4baf;
+            --hamburger-color: #333;
+            --card-bg-color: #f9f9f9;
+            --input-border-color: #ccc;
+            --input-bg-color: #fff;
+        }
+
+        [data-theme="dark"] {
+            --background-color: #121212;
+            --text-color: #fff;
+            --header-bg: #1e1e1e;
+            --header-shadow: 0 2px 10px rgba(255,255,255,0.05);
+            --logo-color: #a36ac7;
+            --nav-link-color: #fff;
+            --nav-link-hover-color: #a36ac7;
+            --cta-bg: #a36ac7;
+            --cta-hover-shadow: 0 5px 15px rgba(163, 106, 199, 0.3);
+            --switch-bg-color: #555;
+            --switch-handle-color: #121212;
+            --switch-bg-color-checked: #a36ac7;
+            --hamburger-color: #fff;
+            --card-bg-color: #1e1e1e;
+            --input-border-color: #555;
+            --input-bg-color: #2c2c2c;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--header-bg);
+            box-shadow: var(--header-shadow);
+        }
+
+        .logo a {
+            color: var(--logo-color);
+        }
+
+        .nav-links a {
+            color: var(--nav-link-color);
+        }
+
+        .nav-links a:hover, .nav-links a.is-active {
+            color: var(--nav-link-hover-color);
+        }
+
+        .cta-button-header {
+            background-color: var(--cta-bg);
+            color: var(--cta-text-color) !important;
+        }
+
+        .cta-button-header:hover {
+            box-shadow: var(--cta-hover-shadow);
+        }
+
+        .hamburger span {
+            background-color: var(--hamburger-color);
+        }
+        
+        .contact-wrapper, .map-wrapper {
+            background: var(--background-color);
+        }
+    </style>
 </head>
 <body>
-  <Hyperspeed client:only="react" effect="one" />
-  <Header />
-  <main>
-    <slot />
-  </main>
-  <Footer />
+    <Header />
+    <main>
+        <slot />
+    </main>
+    <Footer />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        document.addEventListener('astro:page-load', () => {
+            const themeSwitch = document.getElementById('theme-switch');
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                if (themeSwitch) {
+                    themeSwitch.checked = savedTheme === 'dark';
+                }
+            } else {
+                const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                if (themeSwitch) {
+                    themeSwitch.checked = prefersDark;
+                }
+            }
+
+            if (themeSwitch) {
+                themeSwitch.addEventListener('change', function(event) {
+                    if (event.target.checked) {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'light');
+                        localStorage.setItem('theme', 'light');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
+</html>
