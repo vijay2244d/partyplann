@@ -149,6 +149,7 @@ import MainLayout from '../layouts/MainLayout.astro';
   #map {
     height: 250px;
     border-radius: 4px;
+    z-index: 1;
   }
 
   @media (max-width: 992px) {
@@ -165,10 +166,10 @@ import MainLayout from '../layouts/MainLayout.astro';
   }
 </style>
 
-<script>
-  document.addEventListener('astro:page-load', () => {
+<script is:inline>
+  function initMap() {
     const mapElement = document.getElementById('map');
-    if (mapElement) {
+    if (mapElement && !mapElement._leaflet_id) {
       const map = L.map(mapElement).setView([9.9252, 78.1198], 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -203,5 +204,7 @@ import MainLayout from '../layouts/MainLayout.astro';
           });
       });
     }
-  });
+  }
+  document.addEventListener('astro:page-load', initMap);
+  
 </script>

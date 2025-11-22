@@ -26,9 +26,6 @@ import Footer from '../components/Footer.astro';
             --cta-bg: #8a4baf;
             --cta-text-color: #fff;
             --cta-hover-shadow: 0 5px 15px rgba(138, 75, 175, 0.3);
-            --switch-bg-color: #ccc;
-            --switch-handle-color: white;
-            --switch-bg-color-checked: #8a4baf;
             --hamburger-color: #333;
             --card-bg-color: #f9f9f9;
             --input-border-color: #ccc;
@@ -45,9 +42,6 @@ import Footer from '../components/Footer.astro';
             --nav-link-hover-color: #a36ac7;
             --cta-bg: #a36ac7;
             --cta-hover-shadow: 0 5px 15px rgba(163, 106, 199, 0.3);
-            --switch-bg-color: #555;
-            --switch-handle-color: #121212;
-            --switch-bg-color-checked: #a36ac7;
             --hamburger-color: #fff;
             --card-bg-color: #1e1e1e;
             --input-border-color: #555;
@@ -66,6 +60,7 @@ import Footer from '../components/Footer.astro';
 
         .logo a {
             color: var(--logo-color);
+            cursor: pointer;
         }
 
         .nav-links a {
@@ -103,30 +98,25 @@ import Footer from '../components/Footer.astro';
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         document.addEventListener('astro:page-load', () => {
-            const themeSwitch = document.getElementById('theme-switch');
+            const logo = document.querySelector('.logo a');
 
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme) {
                 document.documentElement.setAttribute('data-theme', savedTheme);
-                if (themeSwitch) {
-                    themeSwitch.checked = savedTheme === 'dark';
-                }
             } else {
                 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-                if (themeSwitch) {
-                    themeSwitch.checked = prefersDark;
-                }
             }
 
-            if (themeSwitch) {
-                themeSwitch.addEventListener('change', function(event) {
-                    if (event.target.checked) {
-                        document.documentElement.setAttribute('data-theme', 'dark');
-                        localStorage.setItem('theme', 'dark');
-                    } else {
+            if (logo) {
+                logo.addEventListener('click', function(event) {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    if (currentTheme === 'dark') {
                         document.documentElement.setAttribute('data-theme', 'light');
                         localStorage.setItem('theme', 'light');
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                        localStorage.setItem('theme', 'dark');
                     }
                 });
             }

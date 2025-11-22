@@ -20,58 +20,27 @@ import MainLayout from '../layouts/MainLayout.astro';
     text-align: center;
     height: calc(100vh - 120px); 
     padding: 0 1rem;
-    background-color: #0d001c; /* Slightly darker background */
+    background: linear-gradient(45deg, #ff5e62, #8a4baf, #00c6ff);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
     overflow: hidden;
   }
 
-  .hero::before,
-  .hero::after,
-  .hero-content::before {
-    content: '';
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(150px);
-    will-change: transform, opacity;
-  }
-
-  .hero::before {
-    background-image: radial-gradient(circle, #ff5e62 0%, transparent 50%);
-    animation: aurora-1 15s ease-in-out infinite alternate;
-  }
-
-  .hero::after {
-    background-image: radial-gradient(circle, #8a4baf 0%, transparent 50%);
-    animation: aurora-2 18s ease-in-out infinite alternate;
-  }
-
-  .hero-content::before {
-    background-image: radial-gradient(circle, #00c6ff 0%, transparent 50%);
-    animation: aurora-3 20s ease-in-out infinite alternate;
-  }
-
-  @keyframes aurora-1 {
-    0% { transform: translate(-30%, -40%) scale(1); opacity: 0.6; }
-    50% { transform: translate(40%, 50%) scale(1.4); opacity: 0.4; }
-    100% { transform: translate(-30%, -40%) scale(1); opacity: 0.6; }
-  }
-
-  @keyframes aurora-2 {
-    0% { transform: translate(30%, 40%) scale(1.2); opacity: 0.5; }
-    50% { transform: translate(-40%, -30%) scale(1); opacity: 0.7; }
-    100% { transform: translate(30%, 40%) scale(1.2); opacity: 0.5; }
-  }
-
-  @keyframes aurora-3 {
-    0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-    50% { transform: translate(10%, -10%) scale(1.5); opacity: 0.5; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 
   .hero-content {
     z-index: 1;
-    position: relative; /* Needed for the ::before pseudo-element */
+    position: relative;
   }
 
   .title {

@@ -1,55 +1,44 @@
 ---
-import ThemeSwitcher from './ThemeSwitcher.astro';
+const { pathname } = Astro.url;
 ---
+
 <header>
-  <nav class="navbar">
+  <nav>
     <div class="logo">
       <a href="/">Party Time</a>
     </div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/services">Services</a></li>
-      <li><a href="/reviews">Reviews</a></li>
-      <li><a href="/contact">Contact</a></li>
-      <li><a href="/schedule" class="cta-button-header">Party Discussion</a></li>
-    </ul>
-    <div class="header-controls">
-      <ThemeSwitcher />
-      <button class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    <div class="nav-links">
+      <a href="/" class:list={{ "is-active": pathname === "/" }}>Home</a>
+      <a href="/about" class:list={{ "is-active": pathname === "/about" }}>About</a>
+      <a href="/contact" class:list={{ "is-active": pathname === "/contact" }}>Contact</a>
+    </div>
+    <div class="actions">
+      <a href="/contact" class="cta-button-header">Get a Quote</a>
+      
+    </div>
+    <div class="hamburger-container">
+        <button class="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
   </nav>
 </header>
 
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-
-    if (hamburger && navLinks) {
-      hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-      });
-    }
-  });
-</script>
-
 <style>
+
   header {
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    padding: clamp(0.8rem, 2vw, 1rem) clamp(1rem, 4vw, 2.5rem);
+    background: var(--header-bg, white);
+    box-shadow: 0 2px 10px var(--header-shadow, rgba(0,0,0,0.1));
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 10;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .navbar {
+  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,131 +48,113 @@ import ThemeSwitcher from './ThemeSwitcher.astro';
 
   .logo a {
     font-family: 'Pacifico', cursive;
-    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-size: 2rem;
+    color: var(--logo-color, #8a4baf);
     text-decoration: none;
-    color: #8a4baf;
+    transition: color 0.3s ease;
   }
 
   .nav-links {
     display: flex;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-links li {
-    margin-left: clamp(1rem, 3vw, 2rem);
+    gap: 2rem;
   }
 
   .nav-links a {
-    font-family: 'Pacifico', cursive;
     text-decoration: none;
-    color: #333;
-    font-size: 1.2rem;
-    padding-bottom: 0.5rem;
-    position: relative;
-    transition: color 0.3s;
+    font-weight: 700;
+    color: var(--nav-link-color, #333);
+    transition: color 0.3s ease;
   }
 
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #8a4baf;
-    transition: width 0.3s;
+  .nav-links a:hover,
+  .nav-links a.is-active {
+    color: var(--nav-link-hover-color, #8a4baf);
   }
-
-  .nav-links a:hover, .nav-links a.is-active {
-    color: #8a4baf;
-  }
-
-  .nav-links a:hover::after, .nav-links a.is-active::after {
-    width: 100%;
+  
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   .cta-button-header {
-    background-color: #8a4baf;
-    color: #fff !important;
-    padding: clamp(0.4rem, 1.5vw, 0.6rem) clamp(1rem, 3vw, 1.5rem);
-    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--cta-bg, #8a4baf);
+    color: var(--cta-text-color, white) !important;
     text-decoration: none;
+    border-radius: 50px;
     font-weight: 700;
-    font-size: clamp(0.9rem, 2vw, 1rem);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .cta-button-header:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(138, 75, 175, 0.3);
-    color: #fff !important;
+    box-shadow: var(--cta-hover-shadow, 0 5px 15px rgba(138, 75, 175, 0.3));
   }
 
-  .cta-button-header::after {
+  .hamburger-container {
     display: none;
   }
-  
-  .header-controls {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-  }
 
-  /* Hamburger Menu */
   .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    gap: 5px;
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
   }
 
   .hamburger span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: #333;
-    transition: all 0.3s ease-in-out;
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: var(--hamburger-color);
+      transition: all 0.3s ease-in-out;
   }
 
-  /* Responsive Styles */
   @media (max-width: 768px) {
-    .nav-links {
+    .nav-links, .actions .cta-button-header {
       display: none;
+    }
+
+    .hamburger-container {
+      display: block;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    nav.is-open .nav-links {
+      display: flex;
       flex-direction: column;
       position: absolute;
       top: 100%;
       left: 0;
+      background: var(--header-bg, white);
       width: 100%;
-      background-color: #fff;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 1rem 0;
+      box-shadow: 0 4px 10px var(--header-shadow, rgba(0,0,0,0.1));
+      align-items: center;
     }
-
-    .nav-links.active {
-      display: flex;
-    }
-
-    .nav-links li {
-      margin: 1rem;
-      text-align: center;
-    }
-
-    .hamburger {
-      display: flex;
-    }
-
-    /* Hamburger Animation */
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -6px);
+    
+    nav.is-open .actions .cta-button-header {
+        display: block;
+        margin-top: 1rem;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+
+    if (hamburger && nav) {
+      hamburger.addEventListener('click', () => {
+        nav.classList.toggle('is-open');
+      });
+    }
+  });
+</script>

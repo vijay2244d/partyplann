@@ -10,18 +10,25 @@ A visually stunning and high-performing website for AstroParty, a party planning
 *   **Performance:** A fast and responsive user experience.
 *   **Visual Enhancements:** A multi-layered, vibrant aurora background effect and consistent, well-proportioned typography.
 
-## Current Plan: Contact Page Redesign & Theme Fix
+## Current Plan: Performance Overhaul & Feature Correction
 
-**Goal:** Overhaul the contact page to match a new, professional design and fix the broken theme-switching functionality.
+**Goal:** Drastically improve site loading speed, fix the broken contact page map, and implement a redesigned, functional theme switcher integrated into the site logo.
 
 **Action Plan:**
 
-1.  **Fix Theme Switcher:**
-    *   Audit all components for hardcoded color values.
-    *   Update component styles to use the centrally-defined CSS theme variables from `MainLayout.astro`.
-    *   Ensure that all visual elements respond correctly to the light/dark mode switch.
-2.  **Redesign Contact Page:**
-    *   Re-implement the `contact.astro` page based on the provided design image.
-    *   Create a two-column layout featuring the contact form on the left, and contact information and the interactive map on the right.
-    *   Remove the previous full-screen entry animation for a more direct user experience.
-    *   Ensure the new design is fully responsive and works seamlessly with the now-functional theme switcher.
+1.  **Performance Optimization:**
+    *   Diagnose the root cause of the slow load times, focusing on the homepage's aurora background effect.
+    *   Re-implement the background effect with a more performant CSS solution to ensure a fast, fluid user experience.
+
+2.  **Fix Contact Page Map:**
+    *   Troubleshoot the map initialization script on `contact.astro`.
+    *   Ensure the Leaflet.js library is loaded correctly and the map displays reliably.
+
+3.  **Redesign Theme Switcher:**
+    *   Remove the existing `ThemeSwitcher.astro` component entirely.
+    *   Modify the `Header.astro` component to remove the old switcher.
+    *   Integrate the theme-switching functionality directly into the "Party Time" logo.
+    *   Update the global script in `MainLayout.astro` to handle theme toggling when the logo is clicked, ensuring the change is persisted in `localStorage`.
+
+4.  **Final Verification:**
+    *   Perform a final check to confirm all fixes are implemented, the site is fast, all features work as expected, and no new errors have been introduced.
