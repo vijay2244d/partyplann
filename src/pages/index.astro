@@ -1,12 +1,46 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
 ---
 
 <MainLayout>
   <section class="hero">
+    <div class="aurora-background">
+      <div class="aurora-blob"></div>
+      <div class="aurora-blob"></div>
+      <div class="aurora-blob"></div>
+    </div>
     <div class="hero-content">
       <h1 class="title blast-text">Welcome to Party Time!</h1>
       <p class="subtitle">Your one-stop shop for all party needs.</p>
+    </div>
+  </section>
+
+  <section id="services" class="services-section">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <ServiceCard 
+          title="Weddings"
+          description="Unforgettable receptions, elegant ceremonies, and everything in between."
+          animationClass="confetti-animation"
+        />
+        <ServiceCard 
+          title="Birthdays"
+          description="Custom-themed parties, from intimate gatherings to milestone extravaganzas."
+          animationClass="balloon-animation"
+        />
+        <ServiceCard 
+          title="Corporate"
+          description="Professional and polished events, from holiday parties to product launches."
+          animationClass="firework-animation"
+        />
+        <ServiceCard 
+          title="Anniversaries"
+          description="Celebrate your love story with a beautifully crafted anniversary party."
+          animationClass="heart-animation"
+        />
+      </div>
     </div>
   </section>
 </MainLayout>
@@ -20,22 +54,71 @@ import MainLayout from '../layouts/MainLayout.astro';
     text-align: center;
     height: calc(100vh - 120px); 
     padding: 0 1rem;
-    background: linear-gradient(45deg, #ff5e62, #8a4baf, #00c6ff);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    background-color: #01010c;
     overflow: hidden;
   }
 
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  .aurora-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140vmax;
+    height: 140vmax;
+    transform: translate(-50%, -50%);
+    animation: rotateBackground 40s linear infinite;
+  }
+
+  @keyframes rotateBackground {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+  }
+
+  .aurora-blob:nth-child(1) {
+    width: 80vmax;
+    height: 80vmax;
+    top: 5%;
+    left: 10%;
+    background-color: rgba(255, 182, 193, 0.4);
+    animation: moveBlob1 12s infinite alternate;
+  }
+
+  .aurora-blob:nth-child(2) {
+    width: 90vmax;
+    height: 90vmax;
+    top: 15%;
+    right: 5%;
+    background-color: rgba(173, 216, 230, 0.4);
+    animation: moveBlob2 16s infinite alternate;
+  }
+
+  .aurora-blob:nth-child(3) {
+    width: 70vmax;
+    height: 70vmax;
+    bottom: 5%;
+    left: 25%;
+    background-color: rgba(230, 230, 250, 0.4);
+    animation: moveBlob3 20s infinite alternate;
+  }
+
+  @keyframes moveBlob1 {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(5vmax, 10vmax) scale(1.1); }
+  }
+
+  @keyframes moveBlob2 {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(-10vmax, 5vmax) scale(0.9); }
+  }
+
+  @keyframes moveBlob3 {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(10vmax, -5vmax) scale(1.2); }
   }
 
   .hero-content {
@@ -75,6 +158,26 @@ import MainLayout from '../layouts/MainLayout.astro';
     animation-duration: 0.8s;
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation-fill-mode: forwards;
+  }
+
+  .services-section {
+    padding: 4rem 1rem;
+    background-color: var(--background-color);
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   @media (max-width: 768px) {

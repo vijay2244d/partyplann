@@ -1,10 +1,56 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import Services from '../components/Services.astro';
-import RecentWork from '../components/RecentWork.astro';
+import ServiceCard from '../components/ServiceCard.astro';
 ---
 
 <MainLayout>
-  <Services />
-  <RecentWork />
+  <section id="services" class="services-section">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-grid">
+        <ServiceCard 
+          title="Weddings"
+          description="Unforgettable receptions, elegant ceremonies, and everything in between."
+          animationClass="confetti-animation"
+        />
+        <ServiceCard 
+          title="Birthdays"
+          description="Custom-themed parties, from intimate gatherings to milestone extravaganzas."
+          animationClass="balloon-animation"
+        />
+        <ServiceCard 
+          title="Corporate"
+          description="Professional and polished events, from holiday parties to product launches."
+          animationClass="firework-animation"
+        />
+        <ServiceCard 
+          title="Anniversaries"
+          description="Celebrate your love story with a beautifully crafted anniversary party."
+          animationClass="heart-animation"
+        />
+      </div>
+    </div>
+  </section>
 </MainLayout>
+
+<style>
+  .services-section {
+    padding: 4rem 1rem;
+    background-color: var(--background-color);
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>

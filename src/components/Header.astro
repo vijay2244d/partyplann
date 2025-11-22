@@ -9,12 +9,13 @@ const { pathname } = Astro.url;
     </div>
     <div class="nav-links">
       <a href="/" class:list={{ "is-active": pathname === "/" }}>Home</a>
+      <a href="/services" class:list={{ "is-active": pathname === "/services" }}>Services</a>
       <a href="/about" class:list={{ "is-active": pathname === "/about" }}>About</a>
+      <a href="/reviews" class:list={{ "is-active": pathname === "/reviews" }}>Reviews</a>
       <a href="/contact" class:list={{ "is-active": pathname === "/contact" }}>Contact</a>
     </div>
     <div class="actions">
-      <a href="/contact" class="cta-button-header">Get a Quote</a>
-      
+      <a href="/consultation" class="cta-button-header">Get a Quote</a>
     </div>
     <div class="hamburger-container">
         <button class="hamburger" aria-label="Toggle menu">
@@ -48,7 +49,7 @@ const { pathname } = Astro.url;
 
   .logo a {
     font-family: 'Pacifico', cursive;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--logo-color, #8a4baf);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -56,12 +57,14 @@ const { pathname } = Astro.url;
 
   .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    align-items: center;
   }
 
   .nav-links a {
     text-decoration: none;
     font-weight: 700;
+    font-size: 1.1rem;
     color: var(--nav-link-color, #333);
     transition: color 0.3s ease;
   }
@@ -78,12 +81,13 @@ const { pathname } = Astro.url;
   }
 
   .cta-button-header {
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 1.6rem;
     background-color: var(--cta-bg, #8a4baf);
     color: var(--cta-text-color, white) !important;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
+    font-size: 1.1rem;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
 

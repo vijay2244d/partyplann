@@ -1,0 +1,217 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout>
+  <!-- Shaking Call Icon Animation -->
+  <div id="phone-animation-container">
+    <svg class="call-icon" xmlns="http://www.w3.org/2000/svg" height="100" viewBox="0 96 960 960" width="100">
+        <path d="M798 894q-125 0-247-54.5T329 707q-99-99-153.5-221T121 239q0-13 9-22t22-9h139q11 0 20 6.5t12 15.5l57 210q5 17-1 32t-18 24L323 535q30 54 70 100t88 88q56 40 100 70l41-38q10-9 24-18t32-1l210 57q9 3 15.5 12t6.5 20v139q0 13-9 22t-22 9Z"/>
+    </svg>
+    <p class="call-message">Click to get in touch</p>
+  </div>
+
+  <section class="consultation-section" style="display: none;">
+    <div class="container">
+      <div class="consultation-form-wrapper">
+        <h2>Book Your Consultation</h2>
+        <div class="form-description-box">
+          <p class="form-description">Let's plan your perfect event! Fill out the form below and we'll get back to you with a personalized quote.</p>
+        </div>
+        <form action="#" method="post">
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" name="full-name" placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com">
+            </div>
+          </div>
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+            </div>
+            <div class="form-group">
+              <label for="event-type">Type of Event</label>
+              <input type="text" id="event-type" name="event-type" placeholder="e.g., Birthday, Wedding, Corporate">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="consultation-date">Preferred Consultation Date</label>
+            <input type="date" id="consultation-date" name="consultation-date">
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Vision</label>
+            <textarea id="message" name="message" rows="6" placeholder="What are you imagining for your event?"></textarea>
+          </div>
+          <button type="submit" class="cta-button">Get My Quote</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .consultation-section {
+    padding: 4rem 1rem;
+    background-color: var(--background-color);
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .consultation-form-wrapper {
+    background-color: var(--card-bg-color, #f9f9f9);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+  }
+
+  .form-description-box {
+    background: linear-gradient(135deg, #c4a7e7, #a380d3);
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .form-description {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+  
+  .form-group-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: .5rem;
+    color: var(--text-color);
+    font-weight: 600;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: .75rem;
+    border: 1px solid var(--input-border-color, #ccc);
+    border-radius: 4px;
+    background-color: var(--input-bg-color, #fff);
+    color: var(--text-color);
+  }
+
+  input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  .cta-button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--cta-bg);
+    color: var(--cta-text-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .cta-button:hover {
+    opacity: 0.9;
+  }
+
+  #phone-animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(249, 244, 251, 0.9);
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+  }
+  #phone-animation-container.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .call-message {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: #555;
+    margin-top: 2rem;
+  }
+
+  .call-icon {
+    animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both infinite;
+    fill: #8a4baf;
+  }
+
+  @keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0) rotate(-2deg); }
+    20%, 80% { transform: translate3d(2px, 0, 0) rotate(4deg); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0) rotate(-6deg); }
+    40%, 60% { transform: translate3d(4px, 0, 0) rotate(6deg); }
+  }
+  
+  @media (max-width: 576px) {
+    .form-group-row {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .consultation-form-wrapper {
+      padding: 2rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const animationContainer = document.getElementById('phone-animation-container');
+    const consultationSection = document.querySelector('.consultation-section');
+
+    if (animationContainer && consultationSection) {
+      animationContainer.addEventListener('click', () => {
+        animationContainer.classList.add('fade-out');
+        consultationSection.style.display = 'block';
+      });
+    }
+  });
+</script>

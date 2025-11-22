@@ -8,27 +8,29 @@ A visually stunning and high-performing website for AstroParty, a party planning
 
 *   **Branding:** Elegant, celebratory, and personal, reflecting the AstroParty brand.
 *   **Performance:** A fast and responsive user experience.
-*   **Visual Enhancements:** A multi-layered, vibrant aurora background effect and consistent, well-proportioned typography.
+*   **Visual Enhancements:** A multi-layered, vibrant background effect and consistent, well-proportioned typography.
 
-## Current Plan: Performance Overhaul & Feature Correction
+## Current Plan: Feature Expansion & Visual Polish
 
-**Goal:** Drastically improve site loading speed, fix the broken contact page map, and implement a redesigned, functional theme switcher integrated into the site logo.
+**Goal:** Create a new "Reviews" page, enhance the contact page with an animation, realign the header, and implement a more sophisticated background effect, all while maintaining optimal performance.
 
 **Action Plan:**
 
-1.  **Performance Optimization:**
-    *   Diagnose the root cause of the slow load times, focusing on the homepage's aurora background effect.
-    *   Re-implement the background effect with a more performant CSS solution to ensure a fast, fluid user experience.
+1.  **Create "Reviews" Page:**
+    *   Create a new `reviews.astro` file in `src/pages`.
+    *   Design a visually appealing layout with styled cards for customer testimonials.
 
-2.  **Fix Contact Page Map:**
-    *   Troubleshoot the map initialization script on `contact.astro`.
-    *   Ensure the Leaflet.js library is loaded correctly and the map displays reliably.
+2.  **Add Calling Animation:**
+    *   Add a shaking phone icon animation to the contact information section on the `contact.astro` page to draw attention to the phone number.
 
-3.  **Redesign Theme Switcher:**
-    *   Remove the existing `ThemeSwitcher.astro` component entirely.
-    *   Modify the `Header.astro` component to remove the old switcher.
-    *   Integrate the theme-switching functionality directly into the "Party Time" logo.
-    *   Update the global script in `MainLayout.astro` to handle theme toggling when the logo is clicked, ensuring the change is persisted in `localStorage`.
+3.  **Realign Header:**
+    *   Adjust the CSS in `Header.astro` to ensure perfect vertical and horizontal alignment of the logo, navigation links, and CTA button for a more polished look.
 
-4.  **Final Verification:**
-    *   Perform a final check to confirm all fixes are implemented, the site is fast, all features work as expected, and no new errors have been introduced.
+4.  **Redesign Background Effect:**
+    *   Replace the current background on the `index.astro` page with a more dynamic, multi-layered, wave-like animated gradient that is both visually impressive and highly performant.
+
+5.  **Update Navigation:**
+    *   Add a link to the new "Reviews" page in the `Header.astro` component.
+
+6.  **Final Verification:**
+    *   Perform a final check to confirm all changes are implemented correctly, the site remains fast, and no new errors have been introduced.

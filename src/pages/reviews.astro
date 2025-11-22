@@ -1,58 +1,35 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-
-const reviews = [
-  {
-    name: "Alex Johnson",
-    review: "The birthday party for my son was a massive success! AstroParty's team was professional and handled everything from decorations to entertainment. The space theme was out of this world!",
-  },
-  {
-    name: "Samantha Lee",
-    review: "Our company's annual gala was flawlessly executed by AstroParty. Their attention to detail and creative ideas made it a memorable night for everyone. True professionals.",
-  },
-  {
-    name: "Michael & Emily Carter",
-    review: "I can't thank AstroParty enough for making our wedding day perfect. They listened to our vision and brought it to life beautifully. It was a stress-free and magical experience.",
-  },
-  {
-    name: "Jessica Chen, CEO of InnovateX",
-    review: "Hired them for a product launch event, and the results were phenomenal. AstroParty created an immersive brand experience that wowed our clients and partners.",
-  },
-  {
-    name: "David Rodriguez",
-    review: "From the custom cocktails to the live band, every single detail of our anniversary party was perfect. AstroParty's team is creative, organized, and a joy to work with.",
-  },
-  {
-    name: "Maria Garcia",
-    review: "The baby shower was absolutely adorable! AstroParty took my scattered ideas and turned them into a cohesive, beautiful event. All the guests were so impressed.",
-  },
-  {
-    name: "The Franklin Family",
-    review: "We've used AstroParty for several family gatherings, and they never disappoint. Their ability to adapt to different themes and scales is impressive. Highly recommended!",
-  },
-  {
-    name: "Dr. Eleanor Vance",
-    review: "AstroParty organized a charity fundraiser for us, and their expertise helped us exceed our fundraising goals. The event was elegant, well-managed, and impactful.",
-  },
-  {
-    name: "Tom Wilson",
-    review: "The superhero training academy party for my 6-year-old was epic! The actors were fantastic with the kids, and the activities were so creative. Best party ever, according to my son!",
-  },
-];
 ---
 
 <MainLayout>
-  <section id="reviews" class="reviews-section">
+  <section class="reviews-section">
     <div class="container">
-      <h2 class="section-title">What Our Clients Say</h2>
+      <h1 class="section-title">What Our Clients Say</h1>
       <div class="reviews-grid">
-        {reviews.map((review) => (
-          <div class="review-card">
-            <div class="review-quote">“</div>
-            <p class="review-text">{review.review}</p>
-            <p class="review-name">- {review.name}</p>
-          </div>
-        ))}
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Party Time made my daughter's birthday unforgettable! The planning was seamless, and the team was so creative. Highly recommend!"</p>
+          <p class="reviewer-name">- Sarah L.</p>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"We used Party Time for our corporate event, and they exceeded all our expectations. Professional, organized, and truly top-notch service."
+          </p>
+          <p class="reviewer-name">- David R.</p>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"The best party planners in the business! They took care of every detail, allowing us to just enjoy the celebration. It was magical."
+          </p>
+          <p class="reviewer-name">- Emily W.</p>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"From the theme to the catering, everything was perfect. The team at Party Time is passionate about what they do, and it shows!"
+          </p>
+          <p class="reviewer-name">- Michael B.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -60,14 +37,20 @@ const reviews = [
 
 <style>
   .reviews-section {
-    padding: 5rem 2rem;
+    padding: 4rem 1rem;
+    background-color: var(--background-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .section-title {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    color: #333;
     text-align: center;
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 3rem;
   }
 
   .reviews-grid {
@@ -77,37 +60,30 @@ const reviews = [
   }
 
   .review-card {
-    background: #fff;
-    padding: 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    position: relative;
+    background-color: var(--card-bg-color, #f9f9f9);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
   }
 
-  .review-quote {
-    position: absolute;
-    top: -10px;
-    left: 15px;
-    font-size: 5rem;
-    color: #ff69b4;
-    opacity: 0.2;
-    font-family: 'Pacifico', cursive;
+  .stars {
+    font-size: 1.5rem;
+    color: #ffc107;
+    margin-bottom: 1rem;
   }
 
   .review-text {
-    font-size: 1.1rem;
     font-style: italic;
-    margin-bottom: 1.5rem;
-    z-index: 1;
+    color: var(--text-color);
+    flex-grow: 1;
+    margin-bottom: 1rem;
   }
 
-  .review-name {
-    font-weight: 700;
+  .reviewer-name {
+    font-weight: 600;
+    color: var(--logo-color);
     text-align: right;
-    z-index: 1;
-    color: #555;
   }
 </style>

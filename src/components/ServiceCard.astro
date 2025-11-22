@@ -1,0 +1,66 @@
+---
+const { title, description, animationClass } = Astro.props;
+---
+
+<div class="service-card" data-animation-class={animationClass}>
+  <div class="card-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  <div class="card-animation-container"></div>
+</div>
+
+<style>
+  .service-card {
+    position: relative;
+    background: var(--card-bg-color, white);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+
+  .card-content {
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+  }
+
+  .card-animation-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 0;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      const animationClass = card.getAttribute('data-animation-class');
+      if (animationClass) {
+        // You can add logic here to trigger different animations based on the class
+      }
+    });
+  });
+</script>
