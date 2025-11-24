@@ -12,6 +12,20 @@
   let anniversaryAnimationStep = 0;
   let isCandleLit = true;
 
+  let anniversaryParticles = [];
+  $: if (service.id === 'anniversary') {
+    anniversaryParticles = Array.from({ length: 40 }).map((_, i) => {
+      const angle = (i / 40) * 2 * Math.PI;
+      const radius = 150 + Math.random() * 100;
+      return {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius,
+        delay: Math.random() * 0.2,
+        size: 1 + Math.random() * 1.5,
+      };
+    });
+  }
+
   function openOverlay(event) {
     const card = event.currentTarget;
     cardRect = card.getBoundingClientRect();
@@ -130,7 +144,12 @@
           <svg class="heart-doodle" viewBox="0 0 100 100"><path d="M50,30 C25,10 0,35 50,70 C100,35 75,10 50,30 Z"></path></svg>
           {#if anniversaryAnimationStep === 3}
             <div class="heart-particles">
-              <div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div><div class="particle">❤️</div>
+              {#each anniversaryParticles as particle}
+                <div 
+                  class="particle" 
+                  style="--x: {particle.x}px; --y: {particle.y}px; animation-delay: {particle.delay}s; font-size: {particle.size}rem;"
+                ></div>
+              {/each}
             </div>
           {/if}
           {#if anniversaryAnimationStep === 1}<p class="instruction">Click to celebrate</p>{/if}
@@ -182,14 +201,46 @@
   @keyframes pop-in { 0% { transform: scale(0.8); } 100% { transform: scale(1); } }
 
   /* Anniversary */
-  .anniversary-container { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; }
+  .anniversary-container { width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; position: relative; }
   .heart-doodle path { fill: transparent; stroke: #e11d48; stroke-width: 2; transition: fill 0.5s ease-in-out; }
   .anniversary-container.step-2 .heart-doodle path, .anniversary-container.step-3 .heart-doodle path { fill: #e11d48; }
   .anniversary-container.step-2 .heart-doodle, .anniversary-container.step-3 .heart-doodle { transform: scale(1.1); filter: drop-shadow(0 0 20px #e11d48); transition: transform 0.5s ease, filter 0.5s ease; }
-  .heart-particles { position: absolute; bottom: 50%; left: 0; right: 0; display: flex; justify-content: center; }
-  .heart-particles .particle { opacity: 0; font-size: 2rem; animation: spill-heart 3s forwards; }
-  @keyframes spill-heart { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(25vh) scale(0.8); opacity: 0; } }
-  .heart-particles .particle:nth-child(n+1) { animation-delay: calc(n * 0.1s); transform: translateX(calc((n - 8) * 20px)) scale(calc(1 + (n % 3 - 1) * 0.1)); }
+  
+  .heart-particles { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    width: 1px; 
+    height: 1px; 
+  }
+
+  .heart-particles .particle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform-origin: center;
+    animation: heart-burst 1.2s cubic-bezier(0.17, 0.89, 0.32, 1.28) forwards;
+  }
+  
+  .heart-particles .particle::before {
+    content: '❤️';
+    position: absolute;
+    left: -1rem;
+    top: -1rem;
+    font-size: inherit;
+  }
+
+  @keyframes heart-burst {
+    0% {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(var(--x), var(--y)) scale(0);
+      opacity: 0;
+    }
+  }
 
   /* --- Responsive Styles --- */
   @media (max-width: 768px) {

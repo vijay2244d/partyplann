@@ -1,55 +1,70 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import ServiceCard from '../components/ServiceCard.astro';
+import ServiceCard from '../components/ServiceCard.svelte';
+
+const services = [
+  {
+    id: 'wedding',
+    title: 'Weddings',
+    icon: '💍',
+  },
+  {
+    id: 'birthday',
+    title: 'Birthdays',
+    icon: '🎂',
+  },
+  {
+    id: 'corporate',
+    title: 'Corporate',
+    icon: '👔',
+  },
+  {
+    id: 'anniversary',
+    title: 'Anniversaries',
+    icon: '💖',
+  },
+];
 ---
 
 <MainLayout>
-  <section id="services" class="services-section">
+  <section class="services-page-section">
     <div class="container">
       <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Click on a service to see the magic happen!</p>
       <div class="services-grid">
-        <ServiceCard 
-          title="Weddings"
-          description="Unforgettable receptions, elegant ceremonies, and everything in between."
-          animationClass="confetti-animation"
-        />
-        <ServiceCard 
-          title="Birthdays"
-          description="Custom-themed parties, from intimate gatherings to milestone extravaganzas."
-          animationClass="balloon-animation"
-        />
-        <ServiceCard 
-          title="Corporate"
-          description="Professional and polished events, from holiday parties to product launches."
-          animationClass="firework-animation"
-        />
-        <ServiceCard 
-          title="Anniversaries"
-          description="Celebrate your love story with a beautifully crafted anniversary party."
-          animationClass="heart-animation"
-        />
+        {services.map(service => (
+          <ServiceCard client:load service={service} />
+        ))}
       </div>
     </div>
   </section>
 </MainLayout>
 
 <style>
-  .services-section {
+  .services-page-section {
     padding: 4rem 1rem;
     background-color: var(--background-color);
   }
 
   .section-title {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 3rem;
+    font-family: 'Pacifico', cursive;
     color: var(--text-color);
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 4rem;
   }
 
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
     max-width: 1200px;
     margin: 0 auto;
   }
