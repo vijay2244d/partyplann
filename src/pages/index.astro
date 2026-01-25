@@ -1,6 +1,5 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-import ServiceCard from '../components/ServiceCard.astro';
 ---
 
 <MainLayout>
@@ -13,34 +12,6 @@ import ServiceCard from '../components/ServiceCard.astro';
     <div class="hero-content">
       <h1 class="title blast-text">Welcome to Party Time!</h1>
       <p class="subtitle">Your one-stop shop for all party needs.</p>
-    </div>
-  </section>
-
-  <section id="services" class="services-section">
-    <div class="container">
-      <h2 class="section-title">Our Services</h2>
-      <div class="services-grid">
-        <ServiceCard 
-          title="Weddings"
-          description="Unforgettable receptions, elegant ceremonies, and everything in between."
-          animationClass="confetti-animation"
-        />
-        <ServiceCard 
-          title="Birthdays"
-          description="Custom-themed parties, from intimate gatherings to milestone extravaganzas."
-          animationClass="balloon-animation"
-        />
-        <ServiceCard 
-          title="Corporate"
-          description="Professional and polished events, from holiday parties to product launches."
-          animationClass="firework-animation"
-        />
-        <ServiceCard 
-          title="Anniversaries"
-          description="Celebrate your love story with a beautifully crafted anniversary party."
-          animationClass="heart-animation"
-        />
-      </div>
     </div>
   </section>
 </MainLayout>
@@ -158,26 +129,6 @@ import ServiceCard from '../components/ServiceCard.astro';
     animation-duration: 0.8s;
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation-fill-mode: forwards;
-  }
-
-  .services-section {
-    padding: 4rem 1rem;
-    background-color: var(--background-color);
-  }
-
-  .section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--text-color);
-  }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
   }
 
   @media (max-width: 768px) {
