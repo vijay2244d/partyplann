@@ -1,5 +1,44 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+
+const reviews = [
+  {
+    name: 'John Doe',
+    position: 'Happy Customer',
+    testimonial: 'AstroParty made my daughter’s birthday unforgettable! The planning was seamless, and the execution was flawless. I couldn’t have asked for a better experience.',
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704d'
+  },
+  {
+    name: 'Jane Smith',
+    position: 'Corporate Client',
+    testimonial: 'We hired AstroParty for our annual company event, and they exceeded all our expectations. The team was professional, creative, and incredibly organized. Highly recommended!',
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026705d'
+  },
+  {
+    name: 'David Johnson',
+    position: 'Groom-to-be',
+    testimonial: 'The bachelor party was a massive hit, all thanks to AstroParty. They took care of every detail, allowing me and my friends to just relax and have a great time.',
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026706d'
+  },
+    {
+    name: 'Michael Brown',
+    position: 'Event Planner',
+    testimonial: 'I collaborate with AstroParty on many events, and they are my go-to team for a reason. Their creativity and attention to detail are unmatched. Every event is a success.',
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026707d'
+  },
+  {
+    name: 'Emily White',
+    position: 'Bride-to-be',
+    testimonial: 'AstroParty planned my bridal shower, and it was absolutely magical. The decorations, the activities, everything was perfect. I can’t wait for them to plan my wedding!',
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026708d'
+  },
+  {
+    name: 'Chris Green',
+    position: 'Satisfied Customer',
+    testimonial: 'If you want a stress-free party planning experience, look no further than AstroParty. They are the best in the business. I will definitely be using their services again!',
+    avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026709d'
+  }
+];
 ---
 
 <MainLayout>
@@ -7,29 +46,18 @@ import MainLayout from '../layouts/MainLayout.astro';
     <div class="container">
       <h1 class="section-title">What Our Clients Say</h1>
       <div class="reviews-grid">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"Party Time made my daughter's birthday unforgettable! The planning was seamless, and the team was so creative. Highly recommend!"</p>
-          <p class="reviewer-name">- Sarah L.</p>
-        </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"We used Party Time for our corporate event, and they exceeded all our expectations. Professional, organized, and truly top-notch service."
-          </p>
-          <p class="reviewer-name">- David R.</p>
-        </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"The best party planners in the business! They took care of every detail, allowing us to just enjoy the celebration. It was magical."
-          </p>
-          <p class="reviewer-name">- Emily W.</p>
-        </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">"From the theme to the catering, everything was perfect. The team at Party Time is passionate about what they do, and it shows!"
-          </p>
-          <p class="reviewer-name">- Michael B.</p>
-        </div>
+        {reviews.map(review => (
+          <div class="review-card">
+            <p class="testimonial">"{review.testimonial}"</p>
+            <div class="author-info">
+              <img src={review.avatar} alt={review.name} class="avatar">
+              <div>
+                <p class="author-name">{review.name}</p>
+                <p class="author-position">{review.position}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -48,42 +76,63 @@ import MainLayout from '../layouts/MainLayout.astro';
 
   .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
     color: var(--text-color);
     margin-bottom: 3rem;
   }
 
   .reviews-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 2rem;
   }
 
   .review-card {
     background-color: var(--card-bg-color, #f9f9f9);
-    padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .stars {
-    font-size: 1.5rem;
-    color: #ffc107;
-    margin-bottom: 1rem;
+  .review-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
 
-  .review-text {
-    font-style: italic;
+  .testimonial {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
     color: var(--text-color);
-    flex-grow: 1;
-    margin-bottom: 1rem;
+    margin: 0 0 1.5rem 0;
   }
 
-  .reviewer-name {
-    font-weight: 600;
-    color: var(--logo-color);
-    text-align: right;
+  .author-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  .author-name {
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+  }
+
+  .author-position {
+    color: var(--text-color);
+    opacity: 0.8;
+    margin: 0;
   }
 </style>

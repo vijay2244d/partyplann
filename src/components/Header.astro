@@ -7,13 +7,6 @@ const { pathname } = Astro.url;
     <div class="logo">
       <a href="/">Party Time</a>
     </div>
-    <div class="nav-links">
-      <a href="/" class:list={{ "is-active": pathname === "/" }}>Home</a>
-      <a href="/services" class:list={{ "is-active": pathname === "/services" }}>Services</a>
-      <a href="/about" class:list={{ "is-active": pathname === "/about" }}>About</a>
-      <a href="/reviews" class:list={{ "is-active": pathname === "/reviews" }}>Reviews</a>
-      <a href="/contact" class:list={{ "is-active": pathname === "/contact" }}>Contact</a>
-    </div>
     <div class="actions">
       <a href="/consultation" class="cta-button-header">Get a Quote</a>
     </div>
@@ -53,25 +46,6 @@ const { pathname } = Astro.url;
     color: var(--logo-color, #8a4baf);
     text-decoration: none;
     transition: color 0.3s ease;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--nav-link-color, #333);
-    transition: color 0.3s ease;
-  }
-
-  .nav-links a:hover,
-  .nav-links a.is-active {
-    color: var(--nav-link-hover-color, #8a4baf);
   }
   
   .actions {
@@ -118,7 +92,7 @@ const { pathname } = Astro.url;
   }
 
   @media (max-width: 768px) {
-    .nav-links, .actions .cta-button-header {
+    .actions .cta-button-header {
       display: none;
     }
 
@@ -128,19 +102,6 @@ const { pathname } = Astro.url;
 
     .hamburger {
         display: flex;
-    }
-
-    nav.is-open .nav-links {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--header-bg, white);
-      width: 100%;
-      padding: 1rem 0;
-      box-shadow: 0 4px 10px var(--header-shadow, rgba(0,0,0,0.1));
-      align-items: center;
     }
     
     nav.is-open .actions .cta-button-header {

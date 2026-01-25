@@ -4,11 +4,6 @@ import MainLayout from '../layouts/MainLayout.astro';
 
 <MainLayout>
   <section class="hero">
-    <div class="aurora-background">
-      <div class="aurora-blob"></div>
-      <div class="aurora-blob"></div>
-      <div class="aurora-blob"></div>
-    </div>
     <div class="hero-content">
       <h1 class="title blast-text">Welcome to Party Time!</h1>
       <p class="subtitle">Your one-stop shop for all party needs.</p>
@@ -25,71 +20,16 @@ import MainLayout from '../layouts/MainLayout.astro';
     text-align: center;
     height: calc(100vh - 120px); 
     padding: 0 1rem;
-    background-color: #01010c;
     overflow: hidden;
+    background: linear-gradient(270deg, #8a4baf, #c389f5, #2c003e, #01010c);
+    background-size: 800% 800%;
+    animation: gradient-animation 20s ease infinite;
   }
 
-  .aurora-background {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 140vmax;
-    height: 140vmax;
-    transform: translate(-50%, -50%);
-    animation: rotateBackground 40s linear infinite;
-  }
-
-  @keyframes rotateBackground {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-
-  .aurora-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-  }
-
-  .aurora-blob:nth-child(1) {
-    width: 80vmax;
-    height: 80vmax;
-    top: 5%;
-    left: 10%;
-    background-color: rgba(255, 182, 193, 0.4);
-    animation: moveBlob1 12s infinite alternate;
-  }
-
-  .aurora-blob:nth-child(2) {
-    width: 90vmax;
-    height: 90vmax;
-    top: 15%;
-    right: 5%;
-    background-color: rgba(173, 216, 230, 0.4);
-    animation: moveBlob2 16s infinite alternate;
-  }
-
-  .aurora-blob:nth-child(3) {
-    width: 70vmax;
-    height: 70vmax;
-    bottom: 5%;
-    left: 25%;
-    background-color: rgba(230, 230, 250, 0.4);
-    animation: moveBlob3 20s infinite alternate;
-  }
-
-  @keyframes moveBlob1 {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(5vmax, 10vmax) scale(1.1); }
-  }
-
-  @keyframes moveBlob2 {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(-10vmax, 5vmax) scale(0.9); }
-  }
-
-  @keyframes moveBlob3 {
-    from { transform: translate(0, 0) scale(1); }
-    to { transform: translate(10vmax, -5vmax) scale(1.2); }
+  @keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   .hero-content {
