@@ -21,15 +21,15 @@ This project is a modern, content-focused website for "Party Time," a party plan
 - **Leaflet.js Map Integration:** The contact page includes an interactive map to display the business location.
 - **Component-Based Architecture:** The project is built with a modular structure, using reusable Astro components for the header, footer, dock, and other UI elements.
 - **Optimized for Performance:** By leveraging Astro's server-first approach, the site delivers minimal JavaScript by default, resulting in fast load times and excellent Core Web Vitals.
+- **View Transitions:** Enabled Astro's View Transitions to provide smooth animations between page navigations.
+- **Dynamic Contact Page Splash Screen:** The contact page features a full-screen, animated gradient intro. A large, shaking phone icon flies in, and the "Get in Touch!" greeting animates into view using the same "popper blast" effect from the home page. The user must click to dismiss the splash screen, which then shrinks and fades out to reveal the page content.
 
 ## Current Implementation Plan
 
-### Objective: Implement a Draggable, Auto-Hiding Navigation Dock
+### Objective: Unify Animations by Applying Popper Blast to Contact Page
 
-1.  **Simplify Header:** Remove the main navigation links from the `<Header />` component, leaving only the logo and a "Get a Quote" button.
-2.  **Create Dock Component:** Build a new `<Dock />` component to serve as the primary navigation. This component will feature icons for each page (Home, Services, About, etc.).
-3.  **Style the Dock:** Design the dock with a modern, glass-like effect using `backdrop-filter`. Implement a magnification effect on the icons when the user hovers over them.
-4.  **Implement Drag-and-Drop:** Add JavaScript to allow the user to drag and drop the dock anywhere on the screen. The dock's position will be constrained to the viewport to prevent it from being moved off-screen.
-5.  **Auto-Hiding Behavior:** Modify the dock's CSS and JavaScript to make it auto-hiding. The dock will be positioned mostly off-screen at the bottom and will slide into view when the user hovers over its designated trigger area. The hover-to-reveal functionality will be disabled while the dock is being dragged.
-
-This plan ensures the creation of a unique and intuitive navigation system that enhances the user experience while maintaining the site's modern and interactive feel.
+1.  **Copy Popper Blast Animation:** The CSS keyframes (`popper-blast-in`) and the JavaScript function (`setupPopperAnimation`) were copied from the home page (`index.astro`) to the contact page (`contact.astro`).
+2.  **Apply Animation to Greeting:** The `blast-text` class was added to the `h1` element containing the "Get in Touch!" greeting, and the `setupPopperAnimation()` function is now called when the page loads.
+3.  **Trigger Animation on Load:** The `setupPopperAnimation()` function is triggered by the `astro:page-load` event, ensuring the text animation runs immediately as the splash screen appears.
+4.  **Maintain Layered Animations:** The existing "fly-in" animation for the phone icon and the continuous "shake" animation are preserved, creating a layered and visually rich intro sequence.
+5.  **Achieve Brand Consistency:** This change ensures that the primary text animation style is consistent across both the home and contact pages, reinforcing the site's dynamic brand identity.

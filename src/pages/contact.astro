@@ -4,6 +4,16 @@ import MainLayout from '../layouts/MainLayout.astro';
 ---
 
 <MainLayout>
+  <div id="splash-screen">
+    <div class="splash-content">
+      <svg class="splash-phone-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+      <h1 class="splash-title blast-text">Get in Touch!</h1>
+      <p class="splash-prompt">Click to Continue</p>
+    </div>
+  </div>
+
   <section class="contact-section">
     <div class="container">
       <div class="contact-grid">
@@ -64,7 +74,102 @@ import MainLayout from '../layouts/MainLayout.astro';
 </MainLayout>
 
 <style>
-  .contact-section { padding: 4rem 1rem; background-color: var(--background-color); overflow: hidden; }
+  #splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    cursor: pointer;
+    transition: opacity 0.5s ease-out;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  #splash-screen.shrinking {
+    animation: shrinkOut 0.5s cubic-bezier(0.55, 0.09, 0.68, 0.54) forwards;
+  }
+
+  .splash-content {
+    text-align: center;
+    color: white;
+  }
+
+  .splash-phone-icon {
+    width: 80px;
+    height: 80px;
+    fill: white;
+    margin-bottom: 1.5rem;
+    animation: flyIn 0.8s cubic-bezier(0.39, 0.58, 0.57, 1) 0.2s backwards,
+               shake 1.5s ease-in-out 1.2s infinite;
+  }
+
+  .splash-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    min-height: 1.5em;
+  }
+
+  .splash-prompt {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    animation: flyIn 0.8s cubic-bezier(0.39, 0.58, 0.57, 1) 0.6s backwards;
+  }
+
+  @keyframes flyIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shrinkOut {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(0.8); opacity: 0; }
+  }
+
+  .blast-text { opacity: 1; }
+
+  @keyframes popper-blast-in {
+    from { opacity: 0; transform: translate(var(--start-x), var(--start-y)) scale(1.5) rotate(var(--start-rot)); }
+    to { opacity: 1; transform: translate(0, 0) scale(1) rotate(0); }
+  }
+
+  .blast-text span {
+    display: inline-block;
+    opacity: 0;
+  }
+
+  .blast-text.animate span {
+    animation-name: popper-blast-in;
+    animation-duration: 0.8s;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-fill-mode: forwards;
+  }
+
+  .contact-section {
+    padding: 4rem 1rem;
+    background-color: var(--background-color);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .contact-section.is-visible {
+    opacity: 1;
+  }
+
   .container { max-width: 1200px; margin: 0 auto; }
   .contact-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
   .contact-form-wrapper, .contact-info-card, .location-card { background-color: var(--card-bg-color, #f9f9f9); padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
@@ -118,10 +223,30 @@ import MainLayout from '../layouts/MainLayout.astro';
 </style>
 
 <script is:inline>
+  function setupPopperAnimation() {
+    const textElement = document.querySelector('.blast-text');
+    if (!textElement || textElement.classList.contains('animate')) {
+      return;
+    }
+    const text = textElement.textContent.trim();
+    textElement.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+      const letter = text[i];
+      const span = document.createElement('span');
+      span.textContent = letter;
+      if (letter.trim() === '') { span.style.width = '0.5em'; }
+      span.style.setProperty('--start-x', `${Math.random() * 400 - 200}px`);
+      span.style.setProperty('--start-y', `${Math.random() * 300 - 150}px`);
+      span.style.setProperty('--start-rot', `${Math.random() * 90 - 45}deg`);
+      span.style.animationDelay = `${i * 0.035}s`;
+      textElement.appendChild(span);
+    }
+    textElement.classList.add('animate');
+  }
+
   function playIntro() {
     const elements = document.querySelectorAll('.intro-animate');
     elements.forEach(el => {
-      // A short delay to ensure the page is painted before we animate
       setTimeout(() => {
         el.classList.add('is-visible');
       }, 100);
@@ -170,7 +295,25 @@ import MainLayout from '../layouts/MainLayout.astro';
   }
 
   document.addEventListener('astro:page-load', () => {
-    playIntro();
-    initMap();
+    setupPopperAnimation();
+    const splashScreen = document.getElementById('splash-screen');
+    const contactSection = document.querySelector('.contact-section');
+
+    if (splashScreen && contactSection) {
+      const handleClick = () => {
+        splashScreen.classList.add('shrinking');
+        
+        splashScreen.addEventListener('animationend', () => {
+          splashScreen.style.display = 'none';
+          contactSection.classList.add('is-visible');
+          playIntro();
+          initMap();
+        }, { once: true });
+
+        splashScreen.removeEventListener('click', handleClick);
+      };
+
+      splashScreen.addEventListener('click', handleClick);
+    }
   });
 </script>
