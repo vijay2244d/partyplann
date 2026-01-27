@@ -1,3 +1,4 @@
+
 .dock-container {
   position: fixed;
   left: 50%;
@@ -36,17 +37,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   margin: 0 5px;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, width, height;
 }
 
+.dock-item:hover {
+  transform: translateY(-10px);
+}
+
 .dock-item img {
-  width: 40px;
-  height: 40px;
-  transition: transform 0.2s ease-in-out;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.dock-item:hover img {
+  transform: scale(1.5);
 }
 
 .tooltip {

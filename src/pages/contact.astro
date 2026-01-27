@@ -4,6 +4,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 ---
 
 <MainLayout>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <div id="splash-screen">
     <div class="splash-content">
       <svg class="splash-phone-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -254,44 +255,51 @@ import MainLayout from '../layouts/MainLayout.astro';
   }
 
   function initMap() {
-    setTimeout(() => {
-      const mapElement = document.getElementById('map');
-      if (mapElement && typeof L !== 'undefined' && !mapElement._leaflet_id) {
-        const map = L.map(mapElement).setView([9.9252, 78.1198], 13);
+    const script = document.createElement('script');
+    script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    script.integrity = "sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=";
+    script.crossOrigin = "";
+    script.onload = () => {
+        setTimeout(() => {
+        const mapElement = document.getElementById('map');
+        if (mapElement && typeof L !== 'undefined' && !mapElement._leaflet_id) {
+            const map = L.map(mapElement).setView([9.9252, 78.1198], 13);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
-        let marker;
+            let marker;
 
-        map.on('click', function(e) {
-          const lat = e.latlng.lat;
-          const lon = e.latlng.lng;
-          const addressInput = document.getElementById('address-map');
+            map.on('click', function(e) {
+            const lat = e.latlng.lat;
+            const lon = e.latlng.lng;
+            const addressInput = document.getElementById('address-map');
 
-          if (marker) {
-            map.removeLayer(marker);
-          }
+            if (marker) {
+                map.removeLayer(marker);
+            }
 
-          marker = L.marker([lat, lon]).addTo(map);
+            marker = L.marker([lat, lon]).addTo(map);
 
-          fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
-            .then(response => response.json())
-            .then(data => {
-              if (addressInput) {
-                addressInput.value = data.display_name || 'Address not found';
-              }
-            })
-            .catch(error => {
-              console.error('Error fetching address:', error);
-              if (addressInput) {
-                addressInput.value = 'Could not retrieve address';
-              }
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                if (addressInput) {
+                    addressInput.value = data.display_name || 'Address not found';
+                }
+                })
+                .catch(error => {
+                console.error('Error fetching address:', error);
+                if (addressInput) {
+                    addressInput.value = 'Could not retrieve address';
+                }
+                });
             });
-        });
-      }
-    }, 100);
+        }
+        }, 100);
+    }
+    document.body.appendChild(script);
   }
 
   document.addEventListener('astro:page-load', () => {

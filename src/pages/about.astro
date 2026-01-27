@@ -44,17 +44,17 @@ import MainLayout from '../layouts/MainLayout.astro';
         <h2 class="section-title">Meet the Visionaries</h2>
         <div class="team-grid">
           <div class="team-member">
-            <img src="https://i.pravatar.cc/150?img=11" alt="Portrait of Jane Doe" />
+            <img src="https://i.pravatar.cc/150?img=11" alt="Portrait of Jane Doe" width="150" height="150" loading="lazy" />
             <h4>Jane Doe</h4>
             <p>Lead Creative Director</p>
           </div>
           <div class="team-member">
-            <img src="https://i.pravatar.cc/150?img=12" alt="Portrait of John Smith" />
+            <img src="https://i.pravatar.cc/150?img=12" alt="Portrait of John Smith" width="150" height="150" loading="lazy" />
             <h4>John Smith</h4>
             <p>Head of Operations</p>
           </div>
           <div class="team-member">
-            <img src="https://i.pravatar.cc/150?img=13" alt="Portrait of Emily White" />
+            <img src="https://i.pravatar.cc/150?img=13" alt="Portrait of Emily White" width="150" height="150" loading="lazy" />
             <h4>Emily White</h4>
             <p>Client Relations Manager</p>
           </div>
@@ -83,7 +83,7 @@ import MainLayout from '../layouts/MainLayout.astro';
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 5rem; }
   .about-card { background: #fff; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
   .about-card h3 { font-size: 1.8rem; margin-bottom: 1.5rem; color: #8a4baf; }
-  .about-card p { font-size: 1rem; line-height: 1.7; }
+  .about-card p { font-size: 1rem; line-height: 1.7; color: #555; }
 
   .team-section { text-align: center; }
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -120,7 +120,7 @@ import MainLayout from '../layouts/MainLayout.astro';
           envelopeContainer.classList.add('fade-out');
           aboutSection.hidden = false;
           setTimeout(() => aboutSection.classList.add('visible'), 50);
-        }, 800); // Delay after flap animation
+        }, 1200); // Delay after flap animation
         envelopeContainer.removeEventListener('click', revealContent);
       };
       envelopeContainer.addEventListener('click', revealContent);

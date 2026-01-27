@@ -11,11 +11,11 @@ import { ViewTransitions } from 'astro:transitions';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Party Time - Plan Your Perfect Event</title>
+    <meta name="description" content="Party Time is a full-service event planning company specializing in creating unforgettable experiences. From weddings and corporate events to birthday parties and more, we handle every detail to make your celebration a success." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <ViewTransitions />
 
     <style>
@@ -100,7 +100,6 @@ import { ViewTransitions } from 'astro:transitions';
     </main>
     <Dock />
     <Footer />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         document.addEventListener('astro:page-load', () => {
             const logo = document.querySelector('.logo a');
