@@ -109,21 +109,19 @@ import MainLayout from '../layouts/MainLayout.astro';
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const envelopeContainer = document.getElementById('envelope-container');
-    const aboutSection = document.getElementById('about-section');
+  const envelopeContainer = document.getElementById('envelope-container');
+  const aboutSection = document.getElementById('about-section');
 
-    if (envelopeContainer && aboutSection) {
-      const revealContent = () => {
-        envelopeContainer.classList.add('open');
-        setTimeout(() => {
-          envelopeContainer.classList.add('fade-out');
-          aboutSection.hidden = false;
-          setTimeout(() => aboutSection.classList.add('visible'), 50);
-        }, 1200); // Delay after flap animation
-        envelopeContainer.removeEventListener('click', revealContent);
-      };
-      envelopeContainer.addEventListener('click', revealContent);
-    }
-  });
+  if (envelopeContainer && aboutSection) {
+    const revealContent = () => {
+      envelopeContainer.classList.add('open');
+      setTimeout(() => {
+        envelopeContainer.classList.add('fade-out');
+        aboutSection.hidden = false;
+        setTimeout(() => aboutSection.classList.add('visible'), 50);
+      }, 1200); // Delay after flap animation
+      envelopeContainer.removeEventListener('click', revealContent);
+    };
+    envelopeContainer.addEventListener('click', revealContent);
+  }
 </script>
