@@ -7,6 +7,13 @@ const { pathname } = Astro.url;
     <div class="logo">
       <a href="/">Party Time</a>
     </div>
+    <ul class="nav-links">
+      <li><a href="/" class={pathname === "/" ? "active" : ""}>Home</a></li>
+      <li><a href="/about" class={pathname === "/about" ? "active" : ""}>About</a></li>
+      <li><a href="/services" class={pathname === "/services" ? "active" : ""}>Services</a></li>
+      <li><a href="/reviews" class={pathname === "/reviews" ? "active" : ""}>Reviews</a></li>
+      <li><a href="/contact" class={pathname === "/contact" ? "active" : ""}>Contact</a></li>
+    </ul>
     <div class="actions">
       <a href="/consultation" class="cta-button-header">Get a Quote</a>
     </div>
@@ -19,6 +26,8 @@ const { pathname } = Astro.url;
     </div>
   </nav>
 </header>
+
+<script src="/src/scripts/header.js"></script>
 
 <style>
 
@@ -40,7 +49,7 @@ const { pathname } = Astro.url;
     margin: 0 auto;
   }
 
-  .logo a {
+.logo a {
     font-family: 'Pacifico', cursive;
     font-size: 2.2rem;
     color: var(--logo-color, #8a4baf);
@@ -48,6 +57,44 @@ const { pathname } = Astro.url;
     transition: color 0.3s ease;
   }
   
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--nav-link-color, #333);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--nav-link-hover-color, #8a4baf);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
+    width: 100%;
+  }
+
+  .nav-links a.active {
+    color: var(--nav-link-hover-color, #8a4baf);
+  }
+
   .actions {
     display: flex;
     align-items: center;
@@ -83,43 +130,34 @@ const { pathname } = Astro.url;
       cursor: pointer;
   }
 
-  .hamburger span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      background-color: var(--hamburger-color);
-      transition: all 0.3s ease-in-out;
-  }
-
   @media (max-width: 768px) {
-    .actions .cta-button-header {
+    .nav-links {
       display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      padding: 1rem 0;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .actions {
+        display: none;
     }
 
     .hamburger-container {
-      display: block;
+        display: block;
     }
-
+    
     .hamburger {
         display: flex;
     }
-    
-    nav.is-open .actions .cta-button-header {
-        display: block;
-        margin-top: 1rem;
-    }
   }
+
 </style>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('nav');
-
-    if (hamburger && nav) {
-      hamburger.addEventListener('click', () => {
-        nav.classList.toggle('is-open');
-      });
-    }
-  });
-</script>
