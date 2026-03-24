@@ -98,7 +98,7 @@
       {#if service.id === 'wedding'}
         <div class="wedding-container step-{weddingAnimationStep}" on:click={() => handleInteraction('wedding')}>
           <svg class="rings-colliding" viewBox="-10 -10 120 120">
-            <g class="ring-1"><circle cx="50" cy="50" r="25" stroke="#C0C0C0" stroke-width="8" fill="none"/></g>
+            <g class="ring-1"><circle cx="50" cy="50" r="25" stroke="#FFD700" stroke-width="8" fill="none"/></g>
             <g class="ring-2"><circle cx="50" cy="50" r="25" stroke="#FFD700" stroke-width="8" fill="none"/></g>
           </svg>
           {#if weddingAnimationStep === 1}<p class="instruction">Click to Unite</p>{/if}
