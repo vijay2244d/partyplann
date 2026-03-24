@@ -11,6 +11,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  // Tell Astro it is hosted on GitHub Pages
+  site: 'https://vijay2244d.github.io',
+  base: '/partyplann',
+
   // Enable many frameworks to support all different kinds of components.
   integrations: [
       preact({ include: ['**/preact/*'] }),
