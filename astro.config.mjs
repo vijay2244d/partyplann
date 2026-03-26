@@ -9,31 +9,26 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+const isBuild = process.env.npm_lifecycle_event === 'build';
+
 // https://astro.build/config
-export default defineConfig(({ command }) => {
-  const baseConfig = {
-    // Enable many frameworks to support all different kinds of components.
-    integrations: [
+export default defineConfig({
+  // Apply site and base only during build
+  ...(isBuild && {
+    site: 'https://vijay2244d.github.io',
+    base: '/partyplann',
+  }),
+
+  // Enable many frameworks to support all different kinds of components.
+  integrations: [
       preact({ include: ['**/preact/*'] }),
       solid({ include: ['**/solid/*'] }),
       react({ include: ['**/react/*'] }), // Restrict React to its own folder to prevent conflicts
       svelte(), // Allow svelte to be used anywhere
       vue({ include: ['**/vue/*'] }),
-    ],
+	],
 
-    vite: {
-      plugins: [tailwindcss()],
-    },
-  };
-
-  if (command === 'build') {
-    return {
-      ...baseConfig,
-      // Tell Astro it is hosted on GitHub Pages
-      site: 'https://vijay2244d.github.io',
-      base: '/partyplann',
-    };
-  }
-
-  return baseConfig;
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
