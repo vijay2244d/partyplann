@@ -9,16 +9,8 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
-const isBuild = process.env.npm_lifecycle_event === 'build';
-
 // https://astro.build/config
 export default defineConfig({
-  // Apply site and base only during build
-  ...(isBuild && {
-    site: 'https://vijay2244d.github.io',
-    base: '/partyplann',
-  }),
-
   // Enable many frameworks to support all different kinds of components.
   integrations: [
       preact({ include: ['**/preact/*'] }),
