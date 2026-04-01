@@ -6,18 +6,18 @@ const { pathname } = Astro.url;
 <header>
   <nav>
     <div class="logo">
-      <a href="/">Party Time</a>
+      <a href="/partyplann/">Party Time</a>
     </div>
     <ul class="nav-links">
-      <li><a href="/" class={pathname === "/" ? "active" : ""}>Home</a></li>
-      <li><a href="/about" class={pathname === "/about" ? "active" : ""}>About</a></li>
-      <li><a href="/services" class={pathname === "/services" ? "active" : ""}>Services</a></li>
-      <li><a href="/reviews" class={pathname === "/reviews" ? "active" : ""}>Reviews</a></li>
-      <li><a href="/contact" class={pathname === "/contact" ? "active" : ""}>Contact</a></li>
+      <li><a href="/partyplann/" class={pathname === "/partyplann/" || pathname === "/partyplann" ? "active" : ""}>Home</a></li>
+      <li><a href="/partyplann/about" class={pathname.includes("/about") ? "active" : ""}>About</a></li>
+      <li><a href="/partyplann/services" class={pathname.includes("/services") ? "active" : ""}>Services</a></li>
+      <li><a href="/partyplann/reviews" class={pathname.includes("/reviews") ? "active" : ""}>Reviews</a></li>
+      <li><a href="/partyplann/contact" class={pathname.includes("/contact") ? "active" : ""}>Contact</a></li>
     </ul>
     <div class="actions">
       <ThemeToggle />
-      <a href="/consultation" class="cta-button-header">Get a Quote</a>
+      <a href="/partyplann/consultation" class="cta-button-header">Get a Quote</a>
     </div>
     <div class="hamburger-container">
         <button class="hamburger" aria-label="Toggle menu">
