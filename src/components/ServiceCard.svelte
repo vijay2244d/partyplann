@@ -57,20 +57,20 @@
   function handleInteraction(type) {
     switch (type) {
       case 'wedding':
-        if (weddingAnimationStep === 1) { weddingAnimationStep = 2; setTimeout(() => { window.location.href = '/contact'; }, 2000); }
+        if (weddingAnimationStep === 1) { weddingAnimationStep = 2; setTimeout(() => { window.location.href = '../contact'; }, 2000); }
         break;
       case 'birthday':
-        if (birthdayAnimationStep === 1) { isCandleLit = false; birthdayAnimationStep = 2; setTimeout(() => { window.location.href = '/contact'; }, 1200); }
+        if (birthdayAnimationStep === 1) { isCandleLit = false; birthdayAnimationStep = 2; setTimeout(() => { window.location.href = '../contact'; }, 1200); }
         break;
       case 'corporate':
-        if (corporateAnimationStep === 1) { corporateAnimationStep = 2; setTimeout(() => { window.location.href = '/contact'; }, 1500); }
+        if (corporateAnimationStep === 1) { corporateAnimationStep = 2; setTimeout(() => { window.location.href = '../contact'; }, 1500); }
         break;
       case 'anniversary':
         if (anniversaryAnimationStep === 1) {
           anniversaryAnimationStep = 2;
           setTimeout(() => {
             anniversaryAnimationStep = 3;
-            setTimeout(() => { window.location.href = '/contact'; }, 4000);
+            setTimeout(() => { window.location.href = '../contact'; }, 4000);
           }, 500);
         }
         break;
